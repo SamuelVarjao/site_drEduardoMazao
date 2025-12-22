@@ -5,6 +5,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [journeyOpen, setJourneyOpen] = useState(false);
+  const [proceduresOpen, setProceduresOpen] = useState(false);
+
 
 
   const navigationItems = [
@@ -53,6 +55,21 @@ export default function Home() {
       items: ['Ginecomastia', 'Contorno Corporal'],
     },
   ];
+
+  function ProcedureCard({ name, desc, ind, obj }) {
+  return (
+    <div className="p-6 rounded-xl shadow-md bg-slate-50 hover:shadow-lg transition-all">
+      <h5 className="text-xl font-bold mb-3" style={{ color: '#274046' }}>{name}</h5>
+      <p className="text-slate-700 mb-3">{desc}</p>
+      <p className="text-sm text-slate-600"><strong>Indicação:</strong> {ind}</p>
+      <p className="text-sm text-slate-600 mb-3"><strong>Objetivo:</strong> {obj}</p>
+      <p className="text-xs italic text-slate-500">
+        A indicação depende sempre da avaliação presencial.
+      </p>
+    </div>
+  );
+}
+
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
@@ -279,13 +296,14 @@ export default function Home() {
           </div>
 
           <div className="mt-16 text-center">
-            <a
-              href="#procedures"
-              className="inline-block px-10 py-4 rounded-lg font-semibold transition-all hover:shadow-lg"
-              style={{ backgroundColor: '#274046', color: '#FAF9F7' }}
-            >
-              Conhecer Todos os Procedimentos
-            </a>
+<button
+  onClick={() => setProceduresOpen(true)}
+  className="inline-block px-10 py-4 rounded-lg font-semibold transition-all hover:shadow-lg"
+  style={{ backgroundColor: '#274046', color: '#FAF9F7' }}
+>
+  Conhecer Todos os Procedimentos
+</button>
+
           </div>
         </div>
       </section>
@@ -421,6 +439,86 @@ export default function Home() {
     </div>
   </div>
 )}
+
+{proceduresOpen && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+    <div className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white shadow-2xl p-8 sm:p-12">
+
+      {/* Fechar */}
+      <button
+        onClick={() => setProceduresOpen(false)}
+        className="absolute top-4 right-4 text-slate-500 hover:text-slate-800"
+      >
+        <X size={28} />
+      </button>
+
+      <h3 className="text-4xl font-bold mb-12 text-center" style={{ color: '#2E2E2E' }}>
+        Procedimentos
+      </h3>
+
+      {/* GRID DE CATEGORIAS */}
+      <div className="space-y-14">
+
+        {/* FACE */}
+        <div>
+          <h4 className="text-2xl font-bold mb-6" style={{ color: '#274046' }}>Face</h4>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Blefaroplastia', desc: 'Cirurgia das pálpebras para rejuvenescimento do olhar.', ind: 'Excesso de pele ou bolsas', obj: 'Aparência mais leve e descansada' },
+              { name: 'Lifting Facial', desc: 'Reposicionamento dos tecidos faciais com naturalidade.', ind: 'Flacidez facial avançada', obj: 'Rejuvenescimento global do rosto' },
+              { name: 'Lipo de Papada', desc: 'Remoção de gordura localizada abaixo do queixo.', ind: 'Acúmulo de gordura submentoniana', obj: 'Definir contorno facial' },
+            ].map((p, i) => (
+              <ProcedureCard key={i} {...p} />
+            ))}
+          </div>
+        </div>
+
+        {/* MAMAS */}
+        <div>
+          <h4 className="text-2xl font-bold mb-6" style={{ color: '#274046' }}>Mamas</h4>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Mastopexia', desc: 'Elevação das mamas com ou sem prótese.', ind: 'Flacidez mamária', obj: 'Reposicionar e harmonizar' },
+              { name: 'Prótese Mamária', desc: 'Aumento mamário com planejamento individualizado.', ind: 'Hipomastia ou desejo estético', obj: 'Volume proporcional' },
+              { name: 'Redução Mamária', desc: 'Redução do volume mamário com alívio funcional.', ind: 'Mamas volumosas', obj: 'Conforto e proporção' },
+            ].map((p, i) => (
+              <ProcedureCard key={i} {...p} />
+            ))}
+          </div>
+        </div>
+
+        {/* CORPO */}
+        <div>
+          <h4 className="text-2xl font-bold mb-6" style={{ color: '#274046' }}>Corpo</h4>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Lipoaspiração', desc: 'Remoção de gordura localizada.', ind: 'Gordura resistente', obj: 'Melhorar contorno corporal' },
+              { name: 'Abdominoplastia', desc: 'Correção de flacidez abdominal.', ind: 'Excesso de pele', obj: 'Abdome mais firme' },
+              { name: 'Lipo HD', desc: 'Definição muscular de alta precisão.', ind: 'Perfil atlético', obj: 'Realce anatômico' },
+            ].map((p, i) => (
+              <ProcedureCard key={i} {...p} />
+            ))}
+          </div>
+        </div>
+
+        {/* MASCULINO */}
+        <div>
+          <h4 className="text-2xl font-bold mb-6" style={{ color: '#274046' }}>Masculino</h4>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              { name: 'Ginecomastia', desc: 'Correção do aumento mamário masculino.', ind: 'Volume mamário excessivo', obj: 'Tórax masculino definido' },
+              { name: 'Contorno Corporal', desc: 'Modelagem corporal adaptada ao biotipo masculino.', ind: 'Desarmonia corporal', obj: 'Definição e proporção' },
+            ].map((p, i) => (
+              <ProcedureCard key={i} {...p} />
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+)}
+
 
     </div>
   );
