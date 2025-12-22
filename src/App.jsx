@@ -4,6 +4,8 @@ import { Menu, X, MessageCircle, Instagram, Mail, ChevronDown } from 'lucide-rea
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [journeyOpen, setJourneyOpen] = useState(false);
+
 
   const navigationItems = [
     { id: 'home', label: 'Home' },
@@ -235,14 +237,15 @@ export default function Home() {
           <p className="text-lg leading-relaxed text-slate-700 mb-8">
             Minha filosofia se baseia na naturalidade acima de volume, anatomia como guia, segurança absoluta e planejamento individualizado. Cada procedimento é realizado com transparência total e cuidado dedicado.
           </p>
-          <a
-            href="#journey"
+          <button
+            onClick={() => setJourneyOpen(true)}
             className="inline-flex items-center px-8 py-4 rounded-lg font-semibold transition-all hover:shadow-lg"
             style={{ backgroundColor: '#274046', color: '#FAF9F7' }}
           >
-            Conheça Minha Trajetória
+              Conheça Minha Trajetória
             <ChevronDown className="ml-2 rotate-90" size={20} />
-          </a>
+          </button>
+
         </div>
       </section>
 
@@ -336,6 +339,89 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {journeyOpen && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+    <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white shadow-2xl p-8 sm:p-12">
+
+      {/* Botão fechar */}
+      <button
+        onClick={() => setJourneyOpen(false)}
+        className="absolute top-4 right-4 text-slate-500 hover:text-slate-800"
+      >
+        <X size={28} />
+      </button>
+
+      {/* Conteúdo */}
+      <h3 className="text-4xl font-bold mb-10" style={{ color: '#2E2E2E' }}>
+        Trajetória Profissional
+      </h3>
+
+      {/* Linha do tempo */}
+      <div className="space-y-8 border-l-2 pl-6" style={{ borderColor: '#C9AA7A' }}>
+        <div>
+          <h4 className="text-xl font-bold" style={{ color: '#274046' }}>
+            2013–2019 — Graduação em Medicina
+          </h4>
+          <p className="text-slate-700 mt-2">
+            Atuação em hospital, pronto-socorro e centro cirúrgico, com sólida base clínica e cirúrgica.
+          </p>
+        </div>
+
+        <div>
+          <h4 className="text-xl font-bold" style={{ color: '#274046' }}>
+            2019–2022 — Residência em Cirurgia Geral
+          </h4>
+          <p className="text-slate-700 mt-2">
+            Treinamento técnico intenso em procedimentos cirúrgicos essenciais e tomada de decisão em cenários complexos.
+          </p>
+        </div>
+
+        <div>
+          <h4 className="text-xl font-bold" style={{ color: '#274046' }}>
+            2022–2025 — Residência em Cirurgia Plástica
+          </h4>
+          <p className="text-slate-700 mt-2">
+            Especialização avançada em cirurgia estética e reparadora, com foco em naturalidade e segurança.
+          </p>
+        </div>
+
+        <div>
+          <h4 className="text-xl font-bold" style={{ color: '#274046' }}>
+            2023–2025 — Cursos e aprimoramentos
+          </h4>
+          <p className="text-slate-700 mt-2">
+            Lipo HD, rinomodelação, rejuvenescimento facial, contorno corporal e técnicas modernas.
+          </p>
+        </div>
+      </div>
+
+      {/* Idiomas */}
+      <div className="mt-12">
+        <h4 className="text-2xl font-bold mb-4" style={{ color: '#274046' }}>
+          Idiomas
+        </h4>
+        <ul className="text-slate-700 space-y-1">
+          <li>Português — nativo</li>
+          <li>Inglês — nível a definir</li>
+          <li>Espanhol — nível a definir</li>
+        </ul>
+      </div>
+
+      {/* Perfil de pacientes */}
+      <div className="mt-10">
+        <h4 className="text-2xl font-bold mb-4" style={{ color: '#274046' }}>
+          Perfil de Pacientes
+        </h4>
+        <p className="text-slate-700 leading-relaxed">
+          Adultos e público maduro (30–70+), com busca por naturalidade, segurança e resultados elegantes,
+          evitando estética agressiva.
+        </p>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
