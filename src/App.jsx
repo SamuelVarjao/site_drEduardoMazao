@@ -204,7 +204,12 @@ export default function Home() {
             {/* Right: Image Placeholder */}
             <div className="rounded-2xl overflow-hidden shadow-2xl h-96 md:h-full min-h-96">
               <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                <img src="/IMG_6939.JPEG.jpg" alt="Foto do Dr. Eduardo Mazão" className="w-full h-full object-cover"/>
+                <img
+  src={`${import.meta.env.BASE_URL}IMG_6939.JPEG.jpg`}
+  alt="Foto do Dr. Eduardo Mazão"
+  className="w-full h-full object-cover"
+/>
+
               </div>
             </div>
           </div>
