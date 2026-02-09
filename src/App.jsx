@@ -797,7 +797,7 @@ const colors = {
         </h1>
 
         <p className="text-xl mb-10" style={{ color: colors.darkGray }}>
-          Estamos preparando conteúdos para você
+          Estamos preparando conteúdos para você.
         </p>
 
         <button
