@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Phone, Mail, Instagram, MessageCircle, MapPin, ChevronRight, Heart, Award, Shield, Clock } from 'lucide-react';
+import { Menu, X, Phone, Instagram, MessageCircle, MapPin, ChevronRight, Heart, Award, Shield, Clock } from 'lucide-react';
 
 const DrEduardoWebsite = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -10,7 +10,7 @@ const DrEduardoWebsite = () => {
     doctor: {
       name: 'Dr. Eduardo Mazão',
       title: 'Cirurgião Plástico',
-      crm: 'CRM / RQE',
+      crm: 'CRM: 215.230 | RQE: 139.422',
       tagline: 'Cirurgia plástica moderna, segura e guiada pela sutileza.',
       about: 'Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas de rejuvenescimento facial, mamas e contorno corporal.',
       philosophy: [
@@ -21,18 +21,17 @@ const DrEduardoWebsite = () => {
       ]
     },
     contact: {
-      whatsapp: '+55 (11) 99999-9999',
-      phone: '+55 (11) 3333-3333',
-      email: 'contato@dreduardomazao.com.br',
-      instagram: '@dreduardomazao',
-      address: 'São Paulo, SP',
-      mapEmbedUrl: ''
+      whatsapp: '+55 (11) 98978-3539',
+      phone: '+55 (11) 98978-3539',
+      instagram: '@dr.eduardo.mazao',
+      address: 'Rua do Rocio 199, Vila Olimpia, São Paulo, SP',
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3656.3098193738065!2d-46.68617597559967!3d-23.593219199437662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce577758f05d13%3A0x835701f0798e4f00!2sEduardo%20Maz%C3%A3o%20Miranda%20-%20Cirurgi%C3%A3o%20Pl%C3%A1stico%20-%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1771418150442!5m2!1spt-BR!2sbr'
     },
     timeline: [
-      { period: '2013–2019', title: 'Graduação em Medicina', description: 'Atuação em hospital, pronto-socorro e centro cirúrgico com formação clínica sólida.', image: 'aula1.JPEG' },
-      { period: '2019–2022', title: 'Residência de Cirurgia Geral', description: 'Treinamento técnico intenso em procedimentos cirúrgicos essenciais e refinamento de habilidades.', image: 'cirurgia1_cortado.jpg' },
-      { period: '2022–2025', title: 'Residência em Cirurgia Plástica', description: 'Especialização avançada em cirurgia estética e reparadora com foco em naturalidade.', image: 'procedimento2.jpg' },
-      { period: '2023–2025', title: 'Cursos e Aprimoramentos', description: 'Lipo HD, rinomodelação, rejuvenescimento facial, contorno corporal e técnicas modernas.', image: 'curso3.jpg' }
+      { period: '2013–2019', title: 'Graduação em Medicina', description: 'Atuação em hospital, pronto-socorro e centro cirúrgico com formação clínica sólida.', image: 'aula1.webp' },
+      { period: '2019–2022', title: 'Residência de Cirurgia Geral', description: 'Treinamento técnico intenso em procedimentos cirúrgicos essenciais e refinamento de habilidades.', image: 'cirurgia1_cortado.webp' },
+      { period: '2022–2025', title: 'Residência em Cirurgia Plástica', description: 'Especialização avançada em cirurgia estética e reparadora com foco em naturalidade.', image: 'procedimento2.webp' },
+      { period: '2023–2025', title: 'Cursos e Aprimoramentos', description: 'Lipo HD, rinomodelação, rejuvenescimento facial, contorno corporal e técnicas modernas.', image: 'curso3.webp' }
     ],
     procedures: {
       face: [
@@ -56,9 +55,9 @@ const DrEduardoWebsite = () => {
       ]
     },
     testimonials: [
-      { name: 'Marisa S.', age: 52, text: 'Resultado absolutamente natural. O Dr. Eduardo entendeu exatamente o que eu queria. Muito seguro!' },
-      { name: 'Carlos M.', age: 58, text: 'Profissionalismo, cuidado e excelentes resultados. Recomendo muito.' },
-      { name: 'Patricia L.', age: 48, text: 'Ficou exatamente como sonhava. Muito feliz e segura com o procedimento.' }
+      { name: 'Patricia Almeida', text: 'Excelente profissional, zeloso ao extremo, cuida de cada detalhe que leva a perfeição! Minha autoestima está nas alturas, me sinto mais jovem , mais confiante e claro mais bonita, minha rinoplastia foi um sucesso, meu nariz ficou lindo, perfeito! Gratidão Dr. Eduardo' },
+      { name: 'Sueli Linhan Silva', text: 'Tenho 72 anos de idade, com o passar dos anos a pele da minha face foi ficando cada dia mais flácida e isso me deixava muito triste. Conheci o Dr. Eduardo Mazão no Hospital Heliópolis de São Paulo. Ele fez um procedimento de reposição dos músculos da face. A cirurgia foi um sucesso. A recuperação foi tranquila, sem edemas, a cicatrização foi perfeita, quase invisível. Estou muito feliz, confiante e a minha aparência é de quem rejuvenesceu. Os cuidados dispensados pelo Dr Eduardo me deixaram muito segura. Só tenho que agradecer por tudo.' },
+      { name: 'Danilo Modesto', text: 'Excelente profissional. Confio de olhos fechados! Humano, empático e detalhista! Recomendo 👏🏽👏🏽' }
     ]
   };
 
@@ -200,11 +199,11 @@ const colors = {
               <div className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.soft }}>
                 <picture>
   <source
-    srcSet={`${import.meta.env.BASE_URL}perfil3_cortado.jpeg`}
-    type="image/jpeg"
+    srcSet={`${import.meta.env.BASE_URL}perfil3_cortado.webp`}
+    type="image/webp"
   />
   <img
-    src={`${import.meta.env.BASE_URL}perfil3_cortado.jpeg`}
+    src={`${import.meta.env.BASE_URL}perfil3_cortado.webp`}
     alt="Foto do Dr. Eduardo Mazão"
     loading="eager"
     fetchpriority="high"
@@ -262,9 +261,6 @@ const colors = {
                 </a>
                 <a href={`https://instagram.com/${content.contact.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-70">
                   <Instagram size={24} style={{ color: colors.teal }} />
-                </a>
-                <a href={`mailto:${content.contact.email}`} className="transition-opacity hover:opacity-70">
-                  <Mail size={24} style={{ color: colors.teal }} />
                 </a>
               </div>
             </div>
@@ -356,11 +352,11 @@ const colors = {
               <div className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.soft }}>
                 <picture>
   <source
-    srcSet={`${import.meta.env.BASE_URL}procedimento1.jpg`}
-    type="image/jpeg"
+    srcSet={`${import.meta.env.BASE_URL}procedimento1.webp`}
+    type="image/webp"
   />
   <img
-    src={`${import.meta.env.BASE_URL}procedimento1.jpg`}
+    src={`${import.meta.env.BASE_URL}procedimento1.webp`}
     alt="Foto do Dr. Eduardo Mazão 2"
     loading="lazy"
     decoding="async"
@@ -403,7 +399,7 @@ const colors = {
                     <p className="font-serif text-2xl font-bold capitalize mb-2" style={{ color: colors.teal }}>
                       {category === 'male' ? 'Masculino' : category === 'breast' ? 'Mamas' : category === 'body' ? 'Corpo' : 'Rosto'}
                     </p>
-                    <p className="text-xs"style={{ color: '#8FA3AD' }}>(Imagem ilustrativa)</p>
+                    
                   </div>
                 </div>
                 <div className="p-6">
@@ -436,64 +432,106 @@ const colors = {
     const [ref2, isVisible2] = useScrollAnimation();
 
     return (
-      <section className="py-20" style={{ backgroundColor: colors.offwhite }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-16" style={{ color: colors.darkGray }}>
-            Resultados e Depoimentos
-          </h2>
+<section className="py-20" style={{ backgroundColor: colors.offwhite }}>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2
+      className="font-serif text-4xl md:text-5xl font-bold text-center mb-16"
+      style={{ color: colors.darkGray }}
+    >
+      Resultados e Depoimentos
+    </h2>
 
-          <div 
-            ref={ref1}
-            className="grid md:grid-cols-3 gap-8 mb-16 transition-all duration-1000"
-            style={{
-              opacity: isVisible1 ? 1 : 0,
-              transform: isVisible1 ? 'translateY(0)' : 'translateY(30px)'
-            }}
-          >
-            {[1, 2, 3].map(idx => (
-              <div key={idx}>
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.soft }}>
-                    <div className="text-center text-xs"style={{ color: '#8FA3AD' }}>
-                      <p>Antes</p>
-                    </div>
-                  </div>
-                  <div className="aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.soft }}>
-                    <div className="text-center text-xs"style={{ color: '#8FA3AD' }}>
-                      <p>Depois</p>
-                    </div>
-                  </div>
-                </div>
-                <p className="font-serif text-lg font-bold mb-2" style={{ color: colors.teal }}>Procedimento {idx}</p>
-                <p className="text-sm"style={{ color: colors.tealDeep }}>Descrição do procedimento realizado</p>
-              </div>
-            ))}
+    <div
+      ref={ref1}
+      className="grid md:grid-cols-2 gap-8 mb-16 transition-all duration-1000"
+      style={{
+        opacity: isVisible1 ? 1 : 0,
+        transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
+      }}
+    >
+      {[
+        {
+          title: "Facelift sem cervicoplastia",
+          before: "procedimentoantes1.webp",
+          after: "procedimentodepois1.webp",
+        },
+        {
+          title: "Facelift secundário sem cervicoplastia",
+          before: "procedimentoantes2.webp",
+          after: "procedimentodepois2.webp",
+        },
+      ].map((item, idx) => (
+        <div key={idx} className="bg-white rounded-lg overflow-hidden shadow-sm">
+          <div className="px-6 pb-2">
+            <p className="font-serif text-lg font-bold mb-2" style={{ color: colors.teal }}>
+              {item.title}
+            </p>
           </div>
-
-          <div 
-            ref={ref2}
-            className="grid md:grid-cols-3 gap-8 transition-all duration-1000"
-            style={{
-              opacity: isVisible2 ? 1 : 0,
-              transform: isVisible2 ? 'translateY(0)' : 'translateY(30px)'
-            }}
-          >
-            {content.testimonials.map((test, idx) => (
-              <div key={idx} className="p-8 rounded-lg" style={{ backgroundColor: colors.teal }}>
-                <p className="text-white text-lg leading-relaxed mb-6 italic">
-                  "{test.text}"
-                </p>
-                <div>
-                  <p className="font-serif font-bold text-white">{test.name}</p>
-                  <p className="text-sm" style={{ color: colors.gold }}>{test.age} anos</p>
-                </div>
+          <div className="grid grid-cols-2 gap-4 p-2">
+            <div>
+              <div
+                className="aspect-square rounded-lg overflow-hidden border-2"
+                style={{ borderColor: colors.teal, backgroundColor: colors.soft }}
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}${item.before}`}
+                  alt={`Antes - ${item.title}`}
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="600"
+                  className="w-full h-full object-cover"
+                />
               </div>
-            ))}
+              <p className="font-serif text-lg font-bold mb-1" style={{ color: colors.darkGray }}>
+                Antes
+              </p>
+            </div>
+
+            <div>
+              <div
+                className="aspect-square rounded-lg overflow-hidden border-2"
+                style={{ borderColor: colors.teal, backgroundColor: colors.soft }}
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}${item.after}`}
+                  alt={`Depois - ${item.title}`}
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="600"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="font-serif text-lg font-bold mb-1" style={{ color: colors.darkGray }}>
+                Depois
+              </p>
+            </div>
           </div>
         </div>
-      </section>
-    );
-  };
+      ))}
+    </div>
+
+    <div
+      ref={ref2}
+      className="grid md:grid-cols-3 gap-8 transition-all duration-1000"
+      style={{
+        opacity: isVisible2 ? 1 : 0,
+        transform: isVisible2 ? "translateY(0)" : "translateY(30px)",
+      }}
+    >
+      {content.testimonials.map((test, idx) => (
+        <div key={idx} className="p-8 rounded-lg" style={{ backgroundColor: colors.teal }}>
+          <p className="text-white text-lg leading-relaxed mb-6 italic">"{test.text}"</p>
+          <div>
+            <p className="font-serif font-bold text-white">{test.name}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+); };
 
   const FinalCTA = () => {
     const [ref1, isVisible1] = useScrollAnimation();
@@ -548,11 +586,11 @@ const colors = {
               >
 <picture>
   <source
-    srcSet={`${import.meta.env.BASE_URL}palestra2.JPG`}
-    type="image/jpeg"
+    srcSet={`${import.meta.env.BASE_URL}palestra2.webp`}
+    type="image/webp"
   />
   <img
-    src={`${import.meta.env.BASE_URL}palestra2.JPG`}
+    src={`${import.meta.env.BASE_URL}palestra2.webp`}
     alt="Foto do Dr. Eduardo Mazão 3"
     loading="lazy"
     decoding="async"
@@ -575,11 +613,11 @@ const colors = {
               >
 <picture>
   <source
-    srcSet={`${import.meta.env.BASE_URL}aula2.jpg`}
-    type="image/jpeg"
+    srcSet={`${import.meta.env.BASE_URL}aula2.webp`}
+    type="image/webp"
   />
   <img
-    src={`${import.meta.env.BASE_URL}aula2.jpg`}
+    src={`${import.meta.env.BASE_URL}aula2.webp`}
     alt="Foto do Dr. Eduardo Mazão 3"
     loading="lazy"
     decoding="async"
@@ -760,7 +798,7 @@ const colors = {
                 <div className="h-48 flex items-center justify-center" style={{ backgroundColor: colors.soft }}>
                   <div className="text-center">
                     <p className="font-serif text-xl font-bold mb-2" style={{ color: colors.teal }}>{proc.name}</p>
-                    <p className="text-xs"style={{ color: '#8FA3AD' }}>(Imagem ilustrativa do procedimento)</p>
+                    
                   </div>
                 </div>
                 <div className="p-10">
@@ -823,33 +861,73 @@ const colors = {
             Resultados e Depoimentos
           </h1>
 
-          <h2 className="font-serif text-3xl font-bold text-white mb-10">Galeria de Resultados</h2>
-          <div 
-            ref={ref1}
-            className="grid md:grid-cols-3 gap-8 mb-20 transition-all duration-1000"
-            style={{
-              opacity: isVisible1 ? 1 : 0,
-              transform: isVisible1 ? 'translateY(0)' : 'translateY(30px)'
-            }}
+<h2 className="font-serif text-3xl font-bold text-white mb-10">Galeria de Resultados</h2>
+
+<div
+  ref={ref1}
+  className="grid md:grid-cols-3 gap-8 mb-20 transition-all duration-1000"
+  style={{
+    opacity: isVisible1 ? 1 : 0,
+    transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
+  }}
+>
+  {[
+    { id: 3, before: "procedimentoantes3.webp", after: "procedimentodepois3.webp" },
+    { id: 4, before: "procedimentoantes4.webp", after: "procedimentodepois4.webp" },
+    { id: 5, before: "procedimentoantes5.webp", after: "procedimentodepois5.webp" },
+    { id: 6, before: "procedimentoantes6.webp", after: "procedimentodepois6.webp" },
+    { id: 7, before: "procedimentoantes7.webp", after: "procedimentodepois7.webp" },
+    { id: 8, before: "procedimentoantes8.webp", after: "procedimentodepois8.webp" },
+  ].map((item) => (
+    <div key={item.id} className="bg-white/5 rounded-lg p-4">
+      <div className="grid grid-cols-2 gap-3 mb-4">
+        {/* ANTES */}
+        <div>
+          <div
+            className="aspect-square rounded-lg overflow-hidden border-2"
+            style={{ borderColor: colors.teal, backgroundColor: colors.tealDeep }}
           >
-            {[1, 2, 3, 4, 5, 6].map(idx => (
-              <div key={idx}>
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  <div className="aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.tealDeep }}>
-                    <div className="text-center">
-                      <p className="text-sm"style={{ color: '#8FA3AD' }}>Antes</p>
-                    </div>
-                  </div>
-                  <div className="aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.tealDeep }}>
-                    <div className="text-center">
-                      <p className="text-sm"style={{ color: '#8FA3AD' }}>Depois</p>
-                    </div>
-                  </div>
-                </div>
-                <p className="font-serif font-bold text-white">Procedimento {idx}</p>
-              </div>
-            ))}
+            <img
+              src={`${import.meta.env.BASE_URL}${item.before}`}
+              alt={`Antes - Procedimento ${item.id}`}
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="600"
+              className="w-full h-full object-cover"
+            />
           </div>
+          <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
+            Antes
+          </p>
+        </div>
+
+        {/* DEPOIS */}
+        <div>
+          <div
+            className="aspect-square rounded-lg overflow-hidden border-2"
+            style={{ borderColor: colors.teal, backgroundColor: colors.tealDeep }}
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}${item.after}`}
+              alt={`Depois - Procedimento ${item.id}`}
+              loading="lazy"
+              decoding="async"
+              width="600"
+              height="600"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
+            Depois
+          </p>
+        </div>
+      </div>
+
+      <p className="font-serif font-bold text-white">Procedimento {item.id}</p>
+    </div>
+  ))}
+</div>
 
           <h2 className="font-serif text-3xl font-bold text-white mb-10">Depoimentos de Pacientes</h2>
           <div 
@@ -872,16 +950,9 @@ const colors = {
                 </p>
                 <div>
                   <p className="font-serif font-bold" style={{ color: colors.teal }}>{test.name}</p>
-                  <p className="text-sm"style={{ color: colors.tealDeep }}>{test.age} anos</p>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="text-center mt-16">
-            <button className="px-8 py-4 rounded-full font-medium text-white transition-opacity hover:opacity-80" style={{ backgroundColor: colors.gold, color: colors.darkGray }}>
-              Ver Todos os Depoimentos
-            </button>
           </div>
         </div>
       </section>
@@ -960,14 +1031,6 @@ const colors = {
                 </div>
 
                 <div>
-                  <h3 className="font-serif text-xl font-bold mb-4" style={{ color: colors.teal }}>Email</h3>
-                  <a href={`mailto:${content.contact.email}`} className="flex items-center gap-3 text-lg transition-opacity hover:opacity-70" style={{ color: colors.teal }}>
-                    <Mail size={24} />
-                    {content.contact.email}
-                  </a>
-                </div>
-
-                <div>
                   <h3 className="font-serif text-xl font-bold mb-4" style={{ color: colors.teal }}>Instagram</h3>
                   <a href={`https://instagram.com/${content.contact.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg transition-opacity hover:opacity-70" style={{ color: colors.teal }}>
                     <Instagram size={24} />
@@ -984,14 +1047,16 @@ const colors = {
                 </div>
               </div>
 
-              <div className="mt-12 rounded-lg overflow-hidden h-80" style={{ border: '2px dashed', borderColor: colors.teal }}>
-                <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: colors.soft }}>
-                  <div className="text-center">
-                    <MapPin size={40} style={{ color: colors.teal, margin: '0 auto' }} className="mb-2" />
-                    <p className=" font-medium"style={{ color: colors.tealDeep }}>Localização</p>
-                    <p className="text-xs"style={{ color: '#8FA3AD' }}>Será inserido a localização</p>
-                  </div>
-                </div>
+              <div className="mt-12 rounded-lg overflow-hidden h-80" style={{ border: '2px dashed', borderColor: colors.teal }}>                 
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3656.3098193738065!2d-46.68617597559967!3d-23.593219199437662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce577758f05d13%3A0x835701f0798e4f00!2sEduardo%20Maz%C3%A3o%20Miranda%20-%20Cirurgi%C3%A3o%20Pl%C3%A1stico%20-%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1771418150442!5m2!1spt-BR!2sbr"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  />
               </div>
             </div>
           </div>
