@@ -1,1138 +1,237 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Phone, Instagram, MessageCircle, MapPin, ChevronRight, Heart, Award, Shield, Clock } from 'lucide-react';
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-const DrEduardoWebsite = () => {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedProcedureCategory, setSelectedProcedureCategory] = useState('face');
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import FloatingWhatsApp from "./components/FloatingWhatsapp";
 
-  const content = {
-    doctor: {
-      name: 'Dr. Eduardo Mazão',
-      title: 'Cirurgião Plástico',
-      crm: 'CRM: 215.230 | RQE: 139.422',
-      tagline: 'Cirurgia plástica moderna, segura e guiada pela sutileza.',
-      about: 'Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas de rejuvenescimento facial, mamas e contorno corporal.',
-      philosophy: [
-        { icon: Heart, title: 'Naturalidade acima de volume', description: 'Resultados sutis, elegantes e proporcionais.' },
-        { icon: Award, title: 'Formação sólida', description: 'Anos de prática e especialização em cirurgia geral e cirurgia plástica.' },
-        { icon: Shield, title: 'Segurança em primeiro lugar', description: 'Indicação criteriosa, orientação clara e transparência total.' },
-        { icon: Clock, title: 'Acompanhamento cuidadoso', description: 'Do pré ao pós-operatório.' }
-      ]
-    },
-    contact: {
-      whatsapp: '+55 (11) 98978-3539',
-      phone: '+55 (11) 98978-3539',
-      instagram: '@dr.eduardo.mazao',
-      address: 'Rua do Rocio 199, Vila Olimpia, São Paulo, SP',
-      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3656.3098193738065!2d-46.68617597559967!3d-23.593219199437662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce577758f05d13%3A0x835701f0798e4f00!2sEduardo%20Maz%C3%A3o%20Miranda%20-%20Cirurgi%C3%A3o%20Pl%C3%A1stico%20-%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1771418150442!5m2!1spt-BR!2sbr'
-    },
-    timeline: [
-      { period: '2013–2019', title: 'Graduação em Medicina', description: 'Atuação em hospital, pronto-socorro e centro cirúrgico com formação clínica sólida.', image: 'aula1.webp' },
-      { period: '2019–2022', title: 'Residência de Cirurgia Geral', description: 'Treinamento técnico intenso em procedimentos cirúrgicos essenciais e refinamento de habilidades.', image: 'cirurgia1_cortado.webp' },
-      { period: '2022–2025', title: 'Residência em Cirurgia Plástica', description: 'Especialização avançada em cirurgia estética e reparadora com foco em naturalidade.', image: 'procedimento2.webp' },
-      { period: '2023–2025', title: 'Cursos e Aprimoramentos', description: 'Lipo HD, rinomodelação, rejuvenescimento facial, contorno corporal e técnicas modernas.', image: 'curso3.webp' }
-    ],
-    procedures: {
-      face: [
-        { name: 'Blefaroplastia', description: 'Cirurgia das pálpebras para correção de excesso de pele, flacidez ou bolsas sob os olhos.' },
-        { name: 'Lifting Facial', description: 'Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.' },
-        { name: 'Lipo de Papada', description: 'Remoção de gordura localizada no queixo e pescoço para melhorar contorno.' }
-      ],
-      breast: [
-        { name: 'Mastopexia', description: 'Elevação das mamas para restaurar posição e formato natural.' },
-        { name: 'Prótese de Silicone', description: 'Aumento de volume com naturalidade e proporção ao corpo.' },
-        { name: 'Redução Mamária', description: 'Redução de volume com alívio de desconforto físico e estético.' }
-      ],
-      body: [
-        { name: 'Lipoaspiração', description: 'Remoção de gordura localizada em diferentes regiões do corpo.' },
-        { name: 'Lipo HD', description: 'Técnica avançada de escultura corporal com maior definição e naturalidade.' },
-        { name: 'Abdominoplastia', description: 'Correção de flacidez e excesso de pele na região abdominal.' }
-      ],
-      male: [
-        { name: 'Ginecomastia', description: 'Redução do tecido mamário em homens para contorno mais definido.' },
-        { name: 'Contorno Corporal', description: 'Escultura e definição do tórax, abdômen e flancos.' }
-      ]
-    },
-    testimonials: [
-      { name: 'Patricia Almeida', text: 'Excelente profissional, zeloso ao extremo, cuida de cada detalhe que leva a perfeição! Minha autoestima está nas alturas, me sinto mais jovem , mais confiante e claro mais bonita, minha rinoplastia foi um sucesso, meu nariz ficou lindo, perfeito! Gratidão Dr. Eduardo' },
-      { name: 'Sueli Linhan Silva', text: 'Tenho 72 anos de idade, com o passar dos anos a pele da minha face foi ficando cada dia mais flácida e isso me deixava muito triste. Conheci o Dr. Eduardo Mazão no Hospital Heliópolis de São Paulo. Ele fez um procedimento de reposição dos músculos da face. A cirurgia foi um sucesso. A recuperação foi tranquila, sem edemas, a cicatrização foi perfeita, quase invisível. Estou muito feliz, confiante e a minha aparência é de quem rejuvenesceu. Os cuidados dispensados pelo Dr Eduardo me deixaram muito segura. Só tenho que agradecer por tudo.' },
-      { name: 'Danilo Modesto', text: 'Excelente profissional. Confio de olhos fechados! Humano, empático e detalhista! Recomendo 👏🏽👏🏽' }
-    ]
-  };
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Timeline from "./pages/Timeline";
+import Procedures from "./pages/Procedures";
+import Results from "./pages/Results";
+import Contents from "./pages/Contents";
+import Contact from "./pages/Contact";
 
 const colors = {
-  offwhite: '#fdfbf5',   
-  darkGray: '#306078',  
-  gold: '#EDE3C8',
-  teal: '#6A93A5',      
-  tealDeep: '#3A515B',   
-  soft: '#c7dfeb'        
+  offwhite: "#fdfbf5",
+  darkGray: "#306078",
+  gold: "#EDE3C8",
+  teal: "#6A93A5",
+  tealDeep: "#3A515B",
+  soft: "#c7dfeb",
 };
 
+const content = {
+  doctor: {
+    name: "Dr. Eduardo Mazão",
+    title: "Cirurgião Plástico",
+    crm: "CRM: 215.230 | RQE: 139.422",
+    tagline: "Cirurgia plástica moderna, segura e guiada pela sutileza.",
+    about:
+      "Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas de rejuvenescimento facial, mamas e contorno corporal.",
 
-  const useScrollAnimation = () => {
-    const elementRef = useRef(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        },
-        { threshold: 0.1 }
-      );
-
-      if (elementRef.current) {
-        observer.observe(elementRef.current);
-      }
-
-      return () => {
-        if (elementRef.current) {
-          observer.unobserve(elementRef.current);
-        }
-      };
-    }, []);
-
-    return [elementRef, isVisible];
-  };
-
-  const Navigation = () => (
-    <header className="sticky top-0 z-50 bg-white shadow-sm border-b-2" style={{ borderColor: colors.teal }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => setCurrentPage('home')}>
-            <img
-  src={`${import.meta.env.BASE_URL}icone_dredu.svg`}
-  alt="Logo Dr. Eduardo Mazão"
-  className="w-10 h-10"
-/>
-
-            <div className="hidden sm:block">
-              <p className="font-serif text-sm font-bold" style={{ color: colors.teal }}>DR. EDUARDO</p>
-              <p className="text-xs" style={{ color: colors.gold }}>Cirurgião Plástico</p>
-            </div>
-          </div>
-
-          <nav className="hidden md:flex space-x-8">
-            {[
-              { label: 'Home', id: 'home' },
-              { label: 'Sobre', id: 'about' },
-              { label: 'Trajetória', id: 'timeline' },
-              { label: 'Procedimentos', id: 'procedures' },
-              { label: 'Resultados', id: 'results' },
-              { label: 'Conteúdos', id: 'contents' },
-              { label: 'Contato', id: 'contact' }
-            ].map(item => (
-              <button
-                key={item.id}
-                onClick={() => setCurrentPage(item.id)}
-                className="text-sm font-medium transition-colors hover:opacity-70"
-                style={{ color: currentPage === item.id ? colors.teal : colors.darkGray }}
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-
-          <a
-            href={`https://wa.me/${content.contact.whatsapp.replace(/\D/g, '')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:block px-6 py-2 rounded-full font-medium text-white transition-opacity hover:opacity-80"
-            style={{ backgroundColor: colors.teal }}
-          >
-            Agendar
-          </a>
-        </div>
-
-        {mobileMenuOpen && (
-          <nav className="md:hidden pb-6 space-y-4">
-            {[
-              { label: 'Home', id: 'home' },
-              { label: 'Sobre', id: 'about' },
-              { label: 'Trajetória', id: 'timeline' },
-              { label: 'Procedimentos', id: 'procedures' },
-              { label: 'Resultados', id: 'results' },
-              { label: 'Contato', id: 'contact' }
-            ].map(item => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setCurrentPage(item.id);
-                  setMobileMenuOpen(false);
-                }}
-                className="block w-full text-left text-sm font-medium"
-                style={{ color: colors.darkGray }}
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-        )}
-      </div>
-    </header>
-  );
-
-  const HeroSection = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-    const [ref2, isVisible2] = useScrollAnimation();
-
-    return (
-      <section className="relative min-h-screen flex items-center" style={{ backgroundColor: colors.offwhite }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div 
-              ref={ref1}
-              className="flex items-center justify-center md:order-2 transition-all duration-1000"
-              style={{
-                opacity: isVisible1 ? 1 : 0,
-                transform: isVisible1 ? 'translateX(0)' : 'translateX(50px)'
-              }}
-            >
-              <div className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.soft }}>
-                <picture>
-  <source
-    srcSet={`${import.meta.env.BASE_URL}perfil3_cortado.webp`}
-    type="image/webp"
-  />
-  <img
-    src={`${import.meta.env.BASE_URL}perfil3_cortado.webp`}
-    alt="Foto do Dr. Eduardo Mazão"
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-    width="600"
-    height="600"
-    className="w-full h-full object-cover rounded-lg"
-  />
-</picture>
-
-              </div>
-            </div>
-
-            <div 
-              ref={ref2}
-              className="md:order-1 transition-all duration-1000"
-              style={{
-                opacity: isVisible2 ? 1 : 0,
-                transform: isVisible2 ? 'translateX(0)' : 'translateX(-50px)'
-              }}
-            >
-              <h1 className="font-serif text-5xl md:text-6xl font-bold mb-4" style={{ color: colors.darkGray }}>
-                {content.doctor.name}
-              </h1>
-              <p className="text-lg font-medium mb-2" style={{ color: colors.teal }}>
-                {content.doctor.title} – {content.doctor.crm}
-              </p>
-              <p className="text-2xl leading-relaxed mb-8" style={{ color: colors.teal }}>
-                {content.doctor.tagline}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <a
-                  href={`https://wa.me/${content.contact.whatsapp.replace(/\D/g, '')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-full font-medium text-white transition-opacity hover:opacity-80 flex items-center justify-center gap-2"
-                  style={{ backgroundColor: colors.teal }}
-                >
-                  <MessageCircle size={20} />
-                  Agendar Avaliação
-                </a>
-                <button
-                  onClick={() => setCurrentPage('procedures')}
-                  className="px-8 py-4 rounded-full font-medium border-2 transition-colors hover:opacity-70"
-                  style={{ borderColor: colors.teal, color: colors.teal }}
-                >
-                  Ver Procedimentos
-                </button>
-              </div>
-
-              <div className="flex gap-4">
-                <a href={`https://wa.me/${content.contact.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-70">
-                  <MessageCircle size={24} style={{ color: colors.teal }} />
-                </a>
-                <a href={`https://instagram.com/${content.contact.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-70">
-                  <Instagram size={24} style={{ color: colors.teal }} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const PilarsSection = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-    
-    return (
-      <section className="py-20" style={{ backgroundColor: colors.teal }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-16 text-white">
-            Os Pilares do Atendimento
-          </h2>
-
-          <div 
-            ref={ref1}
-            className="grid md:grid-cols-4 gap-8 transition-all duration-1000"
-            style={{
-              opacity: isVisible1 ? 1 : 0,
-              transform: isVisible1 ? 'translateY(0)' : 'translateY(30px)'
-            }}
-          >
-            {content.doctor.philosophy.map((pilar, idx) => {
-              const Icon = pilar.icon;
-              return (
-                <div key={idx} className="text-center bg-white bg-opacity-10 rounded-lg p-6 backdrop-blur-sm">
-                  <div className="flex justify-center mb-6">
-                    <Icon size={48} style={{ color: colors.gold }} />
-                  </div>
-                  <h3 className="font-serif text-xl font-bold mb-3 text-white">
-                    {pilar.title}
-                  </h3>
-                  <p className="text-gray-200 leading-relaxed">
-                    {pilar.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const AboutHomeSection = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-    const [ref2, isVisible2] = useScrollAnimation();
-
-    return (
-      <section className="py-20" style={{ backgroundColor: colors.offwhite }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div 
-              ref={ref1}
-              className="transition-all duration-1000"
-              style={{
-                opacity: isVisible1 ? 1 : 0,
-                transform: isVisible1 ? 'translateX(0)' : 'translateX(-50px)'
-              }}
-            >
-              <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6" style={{ color: colors.darkGray }}>
-                Conheça o <span style={{ color: colors.teal }}>Doutor</span>
-              </h2>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: colors.darkGray }}>
-                {content.doctor.about}
-              </p>
-              <button
-                onClick={() => setCurrentPage('about')}
-                className="inline-flex items-center gap-2 font-medium transition-all hover:gap-3 group px-6 py-3 rounded-full border-2"
-                style={{ color: colors.teal, borderColor: colors.teal }}
-              >
-                Conheça a trajetória completa
-                <ChevronRight size={20} />
-              </button>
-            </div>
-            <div 
-              ref={ref2}
-              className="flex items-center justify-center transition-all duration-1000"
-              style={{
-                opacity: isVisible2 ? 1 : 0,
-                transform: isVisible2 ? 'translateX(0)' : 'translateX(50px)'
-              }}
-            >
-              <div className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed" style={{ borderColor: colors.teal, backgroundColor: colors.soft }}>
-                <picture>
-  <source
-    srcSet={`${import.meta.env.BASE_URL}procedimento1.webp`}
-    type="image/webp"
-  />
-  <img
-    src={`${import.meta.env.BASE_URL}procedimento1.webp`}
-    alt="Foto do Dr. Eduardo Mazão 2"
-    loading="lazy"
-    decoding="async"
-    width="600"
-    height="600"
-    className="w-full h-full object-cover"
-  />
-</picture>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const ProceduresHomeSection = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-
-    return (
-      <section className="py-20" style={{ backgroundColor: colors.darkGray }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-16 text-white">
-            Principais Procedimentos
-          </h2>
-
-          <div 
-            ref={ref1}
-            className="grid md:grid-cols-4 gap-6 transition-all duration-1000"
-            style={{
-              opacity: isVisible1 ? 1 : 0,
-              transform: isVisible1 ? 'translateY(0)' : 'translateY(30px)'
-            }}
-          >
-            {Object.entries(content.procedures).map(([category, procedures]) => (
-              <div key={category} className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="h-48 flex items-center justify-center border-b-4" style={{ borderColor: colors.teal, backgroundColor: colors.soft }}>
-                  <div className="text-center">
-                    <p className="font-serif text-2xl font-bold capitalize mb-2" style={{ color: colors.teal }}>
-                      {category === 'male' ? 'Masculino' : category === 'breast' ? 'Mamas' : category === 'body' ? 'Corpo' : 'Rosto'}
-                    </p>
-                    
-                  </div>
-                </div>
-                <div className="p-6">
-                  {procedures.map((proc, idx) => (
-                    <p key={idx} className="text-sm leading-relaxed mb-4 last:mb-0" style={{ color: colors.darkGray }}>
-                      • {proc.name}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <button
-              onClick={() => setCurrentPage('procedures')}
-              className="px-8 py-4 rounded-full font-medium border-2 transition-colors hover:opacity-70"
-              style={{ borderColor: colors.gold, color: colors.gold }}
-            >
-              Explorar Todos os Procedimentos
-            </button>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const ResultsHomeSection = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-    const [ref2, isVisible2] = useScrollAnimation();
-
-    return (
-<section className="py-20" style={{ backgroundColor: colors.offwhite }}>
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2
-      className="font-serif text-4xl md:text-5xl font-bold text-center mb-16"
-      style={{ color: colors.darkGray }}
-    >
-      Resultados e Depoimentos
-    </h2>
-
-    <div
-      ref={ref1}
-      className="grid md:grid-cols-2 gap-8 mb-16 transition-all duration-1000"
-      style={{
-        opacity: isVisible1 ? 1 : 0,
-        transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
-      }}
-    >
-      {[
+    philosophy: [
+      { title: "Naturalidade acima de volume", description: "Resultados sutis, elegantes e proporcionais." },
+      { title: "Formação sólida", description: "Anos de prática e especialização em cirurgia geral e cirurgia plástica." },
+      { title: "Segurança em primeiro lugar", description: "Indicação criteriosa, orientação clara e transparência total." },
+      { title: "Acompanhamento cuidadoso", description: "Do pré ao pós-operatório." },
+    ],
+  },
+  contact: {
+    whatsapp: "+55 (11) 98978-3539",
+    phone: "+55 (11) 98978-3539",
+    instagram: "@dr.eduardo.mazao",
+    address: "Rua do Rocio 199, Vila Olimpia, São Paulo, SP",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3656.3098193738065!2d-46.68617597559967!3d-23.593219199437662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce577758f05d13%3A0x835701f0798e4f00!2sEduardo%20Maz%C3%A3o%20Miranda%20-%20Cirurgi%C3%A3o%20Pl%C3%A1stico%20-%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1771418150442!5m2!1spt-BR!2sbr",
+  },
+  timeline: [
+    {
+      period: "2013–2019",
+      title: "Graduação em Medicina",
+      description:
+        "Atuação em hospital, pronto-socorro e centro cirúrgico com formação clínica sólida.",
+      image: "aula1.webp",
+    },
+    {
+      period: "2019–2022",
+      title: "Residência de Cirurgia Geral",
+      description:
+        "Treinamento técnico intenso em procedimentos cirúrgicos essenciais e refinamento de habilidades.",
+      image: "cirurgia1_cortado.webp",
+    },
+    {
+      period: "2022–2025",
+      title: "Residência em Cirurgia Plástica",
+      description:
+        "Especialização avançada em cirurgia estética e reparadora com foco em naturalidade.",
+      image: "procedimento2.webp",
+    },
+    {
+      period: "2023–2025",
+      title: "Cursos e Aprimoramentos",
+      description:
+        "Lipo HD, rinomodelação, rejuvenescimento facial, contorno corporal e técnicas modernas.",
+      image: "curso3.webp",
+    },
+    {
+      period: "2025",
+      title: "Imersão no AdventHealth Nicholson Center",
+      description:
+        "Treinamento em um instituto especializado nos EUA em técnicas avançadas de rejucenescimento facial.",
+      image: "perfil4.JPG",
+    },
+  ],
+    procedures: {
+      face: [
         {
-          title: "Facelift sem cervicoplastia",
-          before: "procedimentoantes1.webp",
-          after: "procedimentodepois1.webp",
+          name: "Blefaroplastia",
+          description:
+            "Cirurgia das pálpebras para correção de excesso de pele, flacidez ou bolsas sob os olhos.",
+            image: "bleferoplastia.png",
         },
         {
-          title: "Facelift secundário sem cervicoplastia",
-          before: "procedimentoantes2.webp",
-          after: "procedimentodepois2.webp",
+          name: "Lifting Facial",
+          description:
+            "Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.",
+            image: "facelifiting.png",
         },
-      ].map((item, idx) => (
-        <div key={idx} className="bg-white rounded-lg overflow-hidden shadow-sm">
-          <div className="px-6 pb-2">
-            <p className="font-serif text-lg font-bold mb-2" style={{ color: colors.teal }}>
-              {item.title}
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-4 p-2">
-            <div>
-              <div
-                className="aspect-square rounded-lg overflow-hidden border-2"
-                style={{ borderColor: colors.teal, backgroundColor: colors.soft }}
-              >
-                <img
-                  src={`${import.meta.env.BASE_URL}${item.before}`}
-                  alt={`Antes - ${item.title}`}
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="600"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="font-serif text-lg font-bold mb-1" style={{ color: colors.darkGray }}>
-                Antes
-              </p>
-            </div>
-
-            <div>
-              <div
-                className="aspect-square rounded-lg overflow-hidden border-2"
-                style={{ borderColor: colors.teal, backgroundColor: colors.soft }}
-              >
-                <img
-                  src={`${import.meta.env.BASE_URL}${item.after}`}
-                  alt={`Depois - ${item.title}`}
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="600"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="font-serif text-lg font-bold mb-1" style={{ color: colors.darkGray }}>
-                Depois
-              </p>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <div
-      ref={ref2}
-      className="grid md:grid-cols-3 gap-8 transition-all duration-1000"
-      style={{
-        opacity: isVisible2 ? 1 : 0,
-        transform: isVisible2 ? "translateY(0)" : "translateY(30px)",
-      }}
-    >
-      {content.testimonials.map((test, idx) => (
-        <div key={idx} className="p-8 rounded-lg" style={{ backgroundColor: colors.teal }}>
-          <p className="text-white text-lg leading-relaxed mb-6 italic">"{test.text}"</p>
-          <div>
-            <p className="font-serif font-bold text-white">{test.name}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-); };
-
-  const FinalCTA = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-
-    return (
-      <section className="py-20" style={{ backgroundColor: colors.teal }}>
-        <div 
-          ref={ref1}
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000"
-          style={{
-            opacity: isVisible1 ? 1 : 0,
-            transform: isVisible1 ? 'scale(1)' : 'scale(0.95)'
-          }}
-        >
-          <p className="text-xl leading-relaxed mb-8 text-white">
-            O primeiro passo é entender sua queixa, seus objetivos e discutir possibilidades reais. Uma avaliação criteriosa e transparente é o início de uma jornada segura.
-          </p>
-          <a
-            href={`https://wa.me/${content.contact.whatsapp.replace(/\D/g, '')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-full font-medium text-white transition-opacity hover:opacity-80"
-            style={{ backgroundColor: colors.gold, color: colors.darkGray }}
-          >
-            <MessageCircle size={20} />
-            Começar Avaliação via WhatsApp
-          </a>
-        </div>
-      </section>
-    );
-  };
-
-  const AboutPage = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-    const [ref2, isVisible2] = useScrollAnimation();
-    const [ref3, isVisible3] = useScrollAnimation();
-
-    return (
-      <section className="min-h-screen py-20" style={{ backgroundColor: colors.offwhite }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
-            <div className="space-y-6">
-              <div 
-                ref={ref1}
-                className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed transition-all duration-1000" 
-                style={{ 
-                  borderColor: colors.teal, 
-                  backgroundColor: colors.soft,
-                  opacity: isVisible1 ? 1 : 0,
-                  transform: isVisible1 ? 'translateY(0)' : 'translateY(30px)'
-                }}
-              >
-<picture>
-  <source
-    srcSet={`${import.meta.env.BASE_URL}palestra2.webp`}
-    type="image/webp"
-  />
-  <img
-    src={`${import.meta.env.BASE_URL}palestra2.webp`}
-    alt="Foto do Dr. Eduardo Mazão 3"
-    loading="lazy"
-    decoding="async"
-    width="600"
-    height="600"
-    className="w-full h-full object-cover rounded-lg"
-  />
-</picture>
-              </div>
-              
-              <div 
-                ref={ref2}
-                className="w-full aspect-video rounded-lg flex items-center justify-center border-2 border-dashed transition-all duration-1000" 
-                style={{ 
-                  borderColor: colors.teal, 
-                  backgroundColor: colors.soft,
-                  opacity: isVisible2 ? 1 : 0,
-                  transform: isVisible2 ? 'translateY(0)' : 'translateY(30px)'
-                }}
-              >
-<picture>
-  <source
-    srcSet={`${import.meta.env.BASE_URL}aula2.webp`}
-    type="image/webp"
-  />
-  <img
-    src={`${import.meta.env.BASE_URL}aula2.webp`}
-    alt="Foto do Dr. Eduardo Mazão 3"
-    loading="lazy"
-    decoding="async"
-    width="600"
-    height="600"
-    className="w-full h-full object-cover rounded-lg"
-  />
-</picture>
-              </div>
-            </div>
-
-            <div 
-              ref={ref3}
-              className="transition-all duration-1000"
-              style={{
-                opacity: isVisible3 ? 1 : 0,
-                transform: isVisible3 ? 'translateX(0)' : 'translateX(50px)'
-              }}
-            >
-              <h1 className="font-serif text-5xl font-bold mb-8" style={{ color: colors.darkGray }}>
-                Sobre o Dr. {content.doctor.name.split(' ')[2]}
-              </h1>
-
-              <p className="text-lg leading-relaxed mb-8" style={{ color: colors.darkGray }}>
-                {content.doctor.about}
-              </p>
-
-              <h2 className="font-serif text-2xl font-bold mb-6" style={{ color: colors.teal }}>Filosofia de Atendimento</h2>
-              <ul className="space-y-4">
-                {[
-                  'Naturalidade acima de volume',
-                  'Anatomia como guia',
-                  'Segurança absoluta',
-                  'Planejamento individualizado',
-                  'Clareza e transparência'
-                ].map((item, idx) => (
-                  <li key={idx} className="flex gap-4 items-start">
-                    <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: colors.teal }}></div>
-                    <span style={{ color: colors.darkGray }}>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-10">
-                <p className="text-sm mb-4"style={{ color: colors.tealDeep }}>Idiomas:</p>
-                <ul className="space-y-2 text-sm" style={{ color: colors.darkGray }}>
-                  <li>• Português (nativo)</li>
-                  <li>• Inglês (avançado)</li>
-                  <li>• Espanhol (básico)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const TimelinePage = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-
-    return (
-      <section className="min-h-screen py-20" style={{ backgroundColor: colors.teal }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-5xl font-bold text-center mb-16 text-white">
-            Trajetória Profissional
-          </h1>
-
-          <div 
-            ref={ref1}
-            className="relative transition-all duration-1000"
-            style={{
-              opacity: isVisible1 ? 1 : 0,
-              transform: isVisible1 ? 'translateY(0)' : 'translateY(30px)'
-            }}
-          >
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full" style={{ backgroundColor: colors.gold }}></div>
-
-<div className="space-y-12">
-  {content.timeline.map((item, idx) => {
-    const reverse = idx % 2 !== 0;
-
-    return (
-      <div
-        key={idx}
-        className={`md:flex gap-12 ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
-      >
-        <div className="md:w-1/2">
-          <div className="bg-white rounded-lg p-8">
-            <p className="font-serif text-xl font-bold mb-2" style={{ color: colors.teal }}>
-              {item.period}
-            </p>
-            <h3 className="font-serif text-2xl font-bold mb-4" style={{ color: colors.teal }}>
-              {item.title}
-            </h3>
-            <p className="leading-relaxed" style={{ color: colors.darkGray }}>
-              {item.description}
-            </p>
-          </div>
-        </div>
-
-        <div className="md:w-1/2">
-          <div className="rounded-lg overflow-hidden shadow-lg bg-white/10 backdrop-blur-sm">
-            <div className="aspect-[4/3] w-full">
-              <img
-                src={`${import.meta.env.BASE_URL}${item.image}`}
-                alt={`Imagem: ${item.title}`}
-                loading="lazy"
-                decoding="async"
-                width="800"
-                height="600"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  })}
-</div>
-
-          </div>
-
-          <div className="mt-20 bg-white rounded-lg p-10">
-            <h2 className="font-serif text-2xl font-bold mb-6" style={{ color: colors.teal }}>
-              Perfil de Pacientes
-            </h2>
-            <p className="text-lg leading-relaxed" style={{ color: colors.darkGray }}>
-              Adultos e público maduro (30–70+) que buscam naturalidade e segurança acima da estética agressiva. Pacientes que entendem o valor de uma abordagem criteriosa e personalizada.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const ProceduresPage = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-
-    return (
-      <section className="min-h-screen py-20" style={{ backgroundColor: colors.offwhite }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-5xl font-bold text-center mb-12" style={{ color: colors.darkGray }}>
-            Procedimentos
-          </h1>
-
-          <div className="flex justify-center gap-4 mb-16 flex-wrap">
-            {[
-              { key: 'face', label: 'Rosto' },
-              { key: 'breast', label: 'Mamas' },
-              { key: 'body', label: 'Corpo' },
-              { key: 'male', label: 'Masculino' }
-            ].map(cat => (
-              <button
-                key={cat.key}
-                onClick={() => setSelectedProcedureCategory(cat.key)}
-                className="px-6 py-2 rounded-full font-medium transition-all"
-                style={{
-                  backgroundColor: selectedProcedureCategory === cat.key ? colors.teal : colors.gold,
-                  color: 'white'
-                }}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-          <div 
-            ref={ref1}
-            className="grid md:grid-cols-2 gap-8 transition-all duration-700"
-            style={{
-              opacity: isVisible1 ? 1 : 0,
-              transform: isVisible1 ? 'translateY(0)' : 'translateY(30px)'
-            }}
-          >
-            {content.procedures[selectedProcedureCategory].map((proc, idx) => (
-              <div key={idx} className="bg-white rounded-lg overflow-hidden border-t-4" style={{ borderColor: colors.teal }}>
-                <div className="h-48 flex items-center justify-center" style={{ backgroundColor: colors.soft }}>
-                  <div className="text-center">
-                    <p className="font-serif text-xl font-bold mb-2" style={{ color: colors.teal }}>{proc.name}</p>
-                    
-                  </div>
-                </div>
-                <div className="p-10">
-                  <p className="leading-relaxed mb-6"style={{ color: colors.darkGray }}>
-                    {proc.description}
-                  </p>
-                  <p className="text-sm italic text-gray-500">
-                    * A indicação depende sempre da avaliação presencial.
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const ContentsPage = () => {
-  const [ref1, isVisible1] = useScrollAnimation();
-
-  return (
-    <section className="min-h-screen py-20" style={{ backgroundColor: colors.offwhite }}>
-      <div
-        ref={ref1}
-        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000"
-        style={{
-          opacity: isVisible1 ? 1 : 0,
-          transform: isVisible1 ? 'translateY(0)' : 'translateY(20px)'
-        }}
-      >
-        <h1 className="font-serif text-5xl font-bold mb-6" style={{ color: colors.teal }}>
-          Conteúdos
-        </h1>
-
-        <p className="text-xl mb-10" style={{ color: colors.darkGray }}>
-          Estamos preparando conteúdos para você.
-        </p>
-
-        <button
-          onClick={() => setCurrentPage('home')}
-          className="px-8 py-4 rounded-full font-medium transition-opacity hover:opacity-80"
-          style={{ backgroundColor: colors.teal, color: 'white' }}
-        >
-          Voltar ao início
-        </button>
-      </div>
-    </section>
-  );
+        {
+          name: "Lipo de Papada",
+          description:
+            "Remoção de gordura localizada no queixo e pescoço para melhorar contorno.",
+            image: "",
+        },
+        {
+          name: "Rinoplastia",
+          description:
+            "Remodelagem da estrutura óssea e cartilaginosa do nariz para melhorar a estética.",
+            image: "rinoplastia.png",
+        },
+        {
+          name: "Otoplastia",
+          description:
+            "Correção de orelhas proeminentes ou assimétricas reposicionando tamanho, formato e posição.",
+            image: "otoplastia.png",
+        },
+      ],
+      breast: [
+        {
+          name: "Mastopexia",
+          description: "Elevação das mamas para restaurar posição e formato natural.",
+          image: "mastopexia.png",
+        },
+        {
+          name: "Prótese de Silicone",
+          description: "Aumento de volume com naturalidade e proporção ao corpo.",
+          image: "protese_mamaria.png",
+        },
+        {
+          name: "Redução Mamária",
+          description: "Redução de volume com alívio de desconforto físico e estético.",
+          image: "reducao_mamaria.png",
+        },
+      ],
+      body: [
+        {
+          name: "Lipoaspiração",
+          description: "Remoção de gordura localizada em diferentes regiões do corpo.",
+          image: "",
+        },
+        {
+          name: "Lipo HD",
+          description:
+            "Técnica avançada de escultura corporal com maior definição e naturalidade.",
+            image: "",
+        },
+        {
+          name: "Abdominoplastia",
+          description: "Correção de flacidez e excesso de pele na região abdominal.",
+          image: "abdominoplastia.png",
+        },
+      ],
+      male: [
+        {
+          name: "Ginecomastia",
+          description:
+            "Redução do tecido mamário em homens para contorno mais definido.",
+            image: "",
+        },
+        {
+          name: "Contorno Corporal",
+          description: "Escultura e definição do tórax, abdômen e flancos.",
+          image: "",
+        },
+      ],
+    },
+  testimonials: [
+    {
+      name: "Patricia Almeida",
+      text: "Excelente profissional, zeloso ao extremo, cuida de cada detalhe que leva a perfeição! Minha autoestima está nas alturas, me sinto mais jovem , mais confiante e claro mais bonita, minha rinoplastia foi um sucesso, meu nariz ficou lindo, perfeito! Gratidão Dr. Eduardo",
+    },
+    {
+      name: "Sueli Linhan Silva",
+      text: "Tenho 72 anos de idade, com o passar dos anos a pele da minha face foi ficando cada dia mais flácida e isso me deixava muito triste. Conheci o Dr. Eduardo Mazão no Hospital Heliópolis de São Paulo. Ele fez um procedimento de reposição dos músculos da face. A cirurgia foi um sucesso. A recuperação foi tranquila, sem edemas, a cicatrização foi perfeita, quase invisível. Estou muito feliz, confiante e a minha aparência é de quem rejuvenesceu. Os cuidados dispensados pelo Dr Eduardo me deixaram muito segura. Só tenho que agradecer por tudo.",
+    },
+    { name: "Danilo Modesto", text: "Excelente profissional. Confio de olhos fechados! Humano, empático e detalhista! Recomendo 👏🏽👏🏽" },
+    { name: "Caroline Carvalho de Oliveira Reno", text: "Excelente cirurgião plástico. Extremamente competente e atencioso. Recomendo sem dúvidas !!!" },
+    { name: "Mary Elisa Marques Ferreira", text: "Atendida com muito cuidado, fiquei especialmente contente com a cirurgia. Pós operatório perfeito. Muito obrigada Dr. Eduardo Maazao" },
+    { name: "Sheila Costa", text: "Excelente cirurgião, indico seu trabalho de olhos fechados🙏🏻🙏🏻" },
+    { name: "Gustavo Koffs", text: "Excelente profissional. Competente, humano, ético. 👏🏻👏🏻👏🏻" },
+    { name: "Elza Corinto", text: "Um profissional excelente, muito educado, zeloso, cuidadoso e o mais importante o respeito pelo paciente e o preculpação de ter um bom resultado. E o amor pelo que faz." },
+    { name: "Fellype Ribeiro", text: "Recomendo de olhos fechados. Cirurgião Plástico mais que competente, atencioso aos mínimos detalhes e de uma técnica impecável!" },
+    { name: "Guilherme Curtarelli", text: "Muito atencioso!" },
+    { name: "Vanessa Amaral", text: "O Dr Eduardo fez a minha cirurgia das mamas e agradeço a ele o resto da minha vida" },
+  ],
 };
 
-  const ResultsPage = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-    const [ref2, isVisible2] = useScrollAnimation();
-
-    return (
-      <section className="min-h-screen py-20" style={{ backgroundColor: colors.darkGray }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-5xl font-bold text-center mb-16 text-white">
-            Resultados e Depoimentos
-          </h1>
-
-<h2 className="font-serif text-3xl font-bold text-white mb-10">Galeria de Resultados</h2>
-
-<div
-  ref={ref1}
-  className="grid md:grid-cols-3 gap-8 mb-20 transition-all duration-1000"
-  style={{
-    opacity: isVisible1 ? 1 : 0,
-    transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
-  }}
->
-  {[
-    { id: 3, before: "procedimentoantes3.webp", after: "procedimentodepois3.webp" },
-    { id: 4, before: "procedimentoantes4.webp", after: "procedimentodepois4.webp" },
-    { id: 5, before: "procedimentoantes5.webp", after: "procedimentodepois5.webp" },
-    { id: 6, before: "procedimentoantes6.webp", after: "procedimentodepois6.webp" },
-    { id: 7, before: "procedimentoantes7.webp", after: "procedimentodepois7.webp" },
-    { id: 8, before: "procedimentoantes8.webp", after: "procedimentodepois8.webp" },
-  ].map((item) => (
-    <div key={item.id} className="bg-white/5 rounded-lg p-4">
-      <div className="grid grid-cols-2 gap-3 mb-4">
-        {/* ANTES */}
-        <div>
-          <div
-            className="aspect-square rounded-lg overflow-hidden border-2"
-            style={{ borderColor: colors.teal, backgroundColor: colors.tealDeep }}
-          >
-            <img
-              src={`${import.meta.env.BASE_URL}${item.before}`}
-              alt={`Antes - Procedimento ${item.id}`}
-              loading="lazy"
-              decoding="async"
-              width="600"
-              height="600"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
-            Antes
-          </p>
-        </div>
-
-        {/* DEPOIS */}
-        <div>
-          <div
-            className="aspect-square rounded-lg overflow-hidden border-2"
-            style={{ borderColor: colors.teal, backgroundColor: colors.tealDeep }}
-          >
-            <img
-              src={`${import.meta.env.BASE_URL}${item.after}`}
-              alt={`Depois - Procedimento ${item.id}`}
-              loading="lazy"
-              decoding="async"
-              width="600"
-              height="600"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
-            Depois
-          </p>
-        </div>
-      </div>
-
-      <p className="font-serif font-bold text-white">Procedimento {item.id}</p>
-    </div>
-  ))}
-</div>
-
-          <h2 className="font-serif text-3xl font-bold text-white mb-10">Depoimentos de Pacientes</h2>
-          <div 
-            ref={ref2}
-            className="grid md:grid-cols-2 gap-8 transition-all duration-1000"
-            style={{
-              opacity: isVisible2 ? 1 : 0,
-              transform: isVisible2 ? 'translateY(0)' : 'translateY(30px)'
-            }}
-          >
-            {content.testimonials.map((test, idx) => (
-              <div key={idx} className="bg-white rounded-lg p-10">
-                <div className="flex gap-1 mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} style={{ color: colors.teal }}>★</span>
-                  ))}
-                </div>
-                <p className="text-xl leading-relaxed mb-8" style={{ color: colors.darkGray }}>
-                  "{test.text}"
-                </p>
-                <div>
-                  <p className="font-serif font-bold" style={{ color: colors.teal }}>{test.name}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const ContactPage = () => {
-    const [ref1, isVisible1] = useScrollAnimation();
-    const [ref2, isVisible2] = useScrollAnimation();
-
-    return (
-      <section className="min-h-screen py-20" style={{ backgroundColor: colors.offwhite }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-5xl font-bold text-center mb-16" style={{ color: colors.darkGray }}>
-            Entre em Contato
-          </h1>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div 
-              ref={ref1}
-              className="bg-white rounded-lg p-10 transition-all duration-1000"
-              style={{
-                opacity: isVisible1 ? 1 : 0,
-                transform: isVisible1 ? 'translateX(0)' : 'translateX(-50px)'
-              }}
-            >
-              <h2 className="font-serif text-2xl font-bold mb-8" style={{ color: colors.teal }}>
-                Envie uma Mensagem
-              </h2>
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: colors.darkGray }}>Nome</label>
-                  <input type="text" className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2" style={{ borderColor: colors.teal }} placeholder="Seu nome" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: colors.darkGray }}>Email</label>
-                  <input type="email" className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2" style={{ borderColor: colors.teal }} placeholder="seu@email.com" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: colors.darkGray }}>Telefone</label>
-                  <input type="tel" className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2" style={{ borderColor: colors.teal }} placeholder="(11) 99999-9999" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: colors.darkGray }}>Mensagem</label>
-                  <textarea rows="5" className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2" style={{ borderColor: colors.teal }} placeholder="Sua mensagem..."></textarea>
-                </div>
-                <button type="submit" className="w-full py-3 rounded-full font-medium text-white transition-opacity hover:opacity-80" style={{ backgroundColor: colors.teal }}>
-                  Enviar Mensagem
-                </button>
-              </form>
-            </div>
-
-            <div 
-              ref={ref2}
-              className="transition-all duration-1000"
-              style={{
-                opacity: isVisible2 ? 1 : 0,
-                transform: isVisible2 ? 'translateX(0)' : 'translateX(50px)'
-              }}
-            >
-              <div className="space-y-8">
-                <div>
-                  <h3 className="font-serif text-xl font-bold mb-4" style={{ color: colors.teal }}>WhatsApp</h3>
-                  <a href={`https://wa.me/${content.contact.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg transition-opacity hover:opacity-70" style={{ color: colors.teal }}>
-                    <MessageCircle size={24} />
-                    {content.contact.whatsapp}
-                  </a>
-                </div>
-
-                <div>
-                  <h3 className="font-serif text-xl font-bold mb-4" style={{ color: colors.teal }}>Telefone</h3>
-                  <a href={`tel:${content.contact.phone}`} className="flex items-center gap-3 text-lg transition-opacity hover:opacity-70" style={{ color: colors.teal }}>
-                    <Phone size={24} />
-                    {content.contact.phone}
-                  </a>
-                </div>
-
-                <div>
-                  <h3 className="font-serif text-xl font-bold mb-4" style={{ color: colors.teal }}>Instagram</h3>
-                  <a href={`https://instagram.com/${content.contact.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg transition-opacity hover:opacity-70" style={{ color: colors.teal }}>
-                    <Instagram size={24} />
-                    {content.contact.instagram}
-                  </a>
-                </div>
-
-                <div>
-                  <h3 className="font-serif text-xl font-bold mb-4" style={{ color: colors.teal }}>Localização</h3>
-                  <p className="flex items-center gap-3 text-lg" style={{ color: colors.darkGray }}>
-                    <MapPin size={24} style={{ color: colors.teal }} />
-                    {content.contact.address}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-12 rounded-lg overflow-hidden h-80" style={{ border: '2px dashed', borderColor: colors.teal }}>                 
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3656.3098193738065!2d-46.68617597559967!3d-23.593219199437662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce577758f05d13%3A0x835701f0798e4f00!2sEduardo%20Maz%C3%A3o%20Miranda%20-%20Cirurgi%C3%A3o%20Pl%C3%A1stico%20-%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1771418150442!5m2!1spt-BR!2sbr"
-    width="100%"
-    height="100%"
-    style={{ border: 0 }}
-    allowFullScreen
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-  />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  const FloatingWhatsApp = () => (
-    <a
-      href={`https://wa.me/${content.contact.whatsapp.replace(/\D/g, '')}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-110 z-40"
-      style={{ backgroundColor: colors.teal }}
-      title="Enviar WhatsApp"
-    >
-      <MessageCircle size={32} className="text-white" />
-    </a>
-  );
-
-  const Footer = () => (
-    <footer className="bg-white border-t-2 py-12" style={{ borderColor: colors.teal }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"style={{ color: colors.tealDeep }}>
-        <p className="mb-4">© 2026 Dr. Eduardo Mazão - Cirurgião Plástico. Todos os direitos reservados.</p>
-        <p className="text-sm">Sua saúde é nossa prioridade.</p>
-      </div>
-    </footer>
-  );
-
-const renderPage = () => {
-  switch (currentPage) {
-    case 'about':
-      return <AboutPage />;
-    case 'timeline':
-      return <TimelinePage />;
-    case 'procedures':
-      return <ProceduresPage />;
-    case 'results':
-      return <ResultsPage />;
-    case 'contents':
-      return <ContentsPage />;
-    case 'contact':
-      return <ContactPage />;
-    default:
-      return (
-        <>
-          <HeroSection />
-          <PilarsSection />
-          <AboutHomeSection />
-          <ProceduresHomeSection />
-          <ResultsHomeSection />
-          <FinalCTA />
-        </>
-      );
-  }
-};
+export default function App() {
+  const [selectedProcedureCategory, setSelectedProcedureCategory] = useState("face");
 
   return (
     <div className="bg-white min-h-screen" style={{ fontFamily: "'DM Sans', 'Lato', 'Montserrat', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap');
-        .font-serif {
-          font-family: 'Playfair Display', 'Cormorant', serif;
-        }
-        * {
-          scroll-behavior: smooth;
-        }
+        .font-serif { font-family: 'Playfair Display', 'Cormorant', serif; }
+        * { scroll-behavior: smooth; }
       `}</style>
 
-      <Navigation />
-      {renderPage()}
-      <FloatingWhatsApp />
-      <Footer />
+      <Navigation colors={colors} content={content} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              content={content}
+              colors={colors}
+              setSelectedProcedureCategory={setSelectedProcedureCategory}
+            />
+          }
+        />
+        <Route path="/sobre" element={<About content={content} colors={colors} />} />
+        <Route path="/trajetoria" element={<Timeline content={content} colors={colors} />} />
+        <Route
+          path="/procedimentos"
+          element={
+            <Procedures
+              content={content}
+              colors={colors}
+              selectedProcedureCategory={selectedProcedureCategory}
+              setSelectedProcedureCategory={setSelectedProcedureCategory}
+            />
+          }
+        />
+        <Route path="/resultados" element={<Results content={content} colors={colors} />} />
+        <Route path="/conteudos" element={<Contents colors={colors} />} />
+        <Route path="/contato" element={<Contact content={content} colors={colors} />} />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+
+      <FloatingWhatsApp content={content} colors={colors} />
+      <Footer colors={colors} />
     </div>
   );
-};
-
-export default DrEduardoWebsite;
+}
