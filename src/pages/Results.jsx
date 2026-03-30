@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import ZoomLightbox from "../components/ZoomLightbox";
 
 function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
@@ -126,16 +127,25 @@ const onTouchEnd = () => {
 };
 
   const [openTestimonial, setOpenTestimonial] = useState(null);
+  const [lightbox, setLightbox] = useState(null);
+
+  const openImage = useCallback((images, startIndex = 0) => {
+    const fullUrls = images.map((img) => `${import.meta.env.BASE_URL}${img}`);
+    setLightbox({ images: fullUrls, startIndex });
+  }, []);
 
   const resultsGallery = useMemo(
     () => [
-      { id: 3, before: "image3.png", after: "image4.png", title:"Rinoplastia" },
-      { id: 4, before: "image5.png", after: "image6.png", title:"Blefaroplastia" },
-      { id: 5, before: "procedimentoantes5.png", after: "procedimentodepois5.png", title:"Facelift Secundário" },
-      { id: 6, before: "image7.png", after: "image8.png", title:"Otoplastia" },
-      { id: 7, before: "procedimentoantes7.png", after: "procedimentodepois7.png", title:"Facelift Sem Cervicoplástia" },
-      { id: 8, before: "image9.png", after: "image10.png", title:"Abdominoplastia" },
+      { id: 3, before: "image3.webp", after: "image4.webp", title: "Rinoplastia" },
+      { id: 4, before: "image5.webp", after: "image6.webp", title: "Blefaroplastia" },
+      { id: 5, before: "procedimentoantes5.webp", after: "procedimentodepois5.webp", title: "Facelift Secundário" },
+      { id: 6, before: "image7.webp", after: "image8.webp", title: "Otoplastia" },
+      { id: 7, before: "procedimentoantes7.webp", after: "procedimentodepois7.webp", title: "Facelift Sem Cervicoplástia" },
+      { id: 8, before: "image9.webp", after: "image10.webp", title: "Abdominoplastia" },
+      { id: 9, before: "otoplastia_antes.webp", after: "otoplastia_depois.webp", title: "Otoplastia" },
+      { id: 10, before: "otoplastia_antes2.webp", after: "otoplastia_depois_2.webp", title: "Otoplastia" },
     ],
+    [],
   );
 
   useEffect(() => {
@@ -168,8 +178,10 @@ const onTouchEnd = () => {
               <div key={item.id} className="bg-white/5 rounded-lg p-4">
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div>
-                    <div
-                      className="aspect-square rounded-lg overflow-hidden border-2"
+                    <button
+                      type="button"
+                      onClick={() => openImage([item.before, item.after], 0)}
+                      className="aspect-square rounded-lg overflow-hidden border-2 w-full cursor-zoom-in"
                       style={{
                         borderColor: mergedColors.teal,
                         backgroundColor: mergedColors.tealDeep,
@@ -177,22 +189,24 @@ const onTouchEnd = () => {
                     >
                       <img
                         src={`${import.meta.env.BASE_URL}${item.before}`}
-                        alt={`Antes - Procedimento ${item.id}`}
+                        alt={`Antes - ${item.title}`}
                         loading="lazy"
                         decoding="async"
                         width="600"
                         height="600"
                         className="w-full h-full object-cover"
                       />
-                    </div>
+                    </button>
                     <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
                       Antes
                     </p>
                   </div>
 
                   <div>
-                    <div
-                      className="aspect-square rounded-lg overflow-hidden border-2"
+                    <button
+                      type="button"
+                      onClick={() => openImage([item.before, item.after], 1)}
+                      className="aspect-square rounded-lg overflow-hidden border-2 w-full cursor-zoom-in"
                       style={{
                         borderColor: mergedColors.teal,
                         backgroundColor: mergedColors.tealDeep,
@@ -200,14 +214,14 @@ const onTouchEnd = () => {
                     >
                       <img
                         src={`${import.meta.env.BASE_URL}${item.after}`}
-                        alt={`Depois - Procedimento ${item.id}`}
+                        alt={`Depois - ${item.title}`}
                         loading="lazy"
                         decoding="async"
                         width="600"
                         height="600"
                         className="w-full h-full object-cover"
                       />
-                    </div>
+                    </button>
                     <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
                       Depois
                     </p>
@@ -280,7 +294,7 @@ const onTouchEnd = () => {
         e.stopPropagation();
       }}
     >
-      “{test.text}”
+      {"\u201C"}{test.text}{"\u201D"}
     </div>
 
     <p className="font-serif font-bold mt-auto pt-5" style={{ color: mergedColors.teal }}>
@@ -363,10 +377,18 @@ const onTouchEnd = () => {
             </div>
 
             <p className="mt-6 text-lg leading-relaxed" style={{ color: mergedColors.darkGray }}>
-              “{openTestimonial.text}”
+              {"\u201C"}{openTestimonial.text}{"\u201D"}
             </p>
           </div>
         </div>
+      )}
+
+      {lightbox && (
+        <ZoomLightbox
+          images={lightbox.images}
+          startIndex={lightbox.startIndex}
+          onClose={() => setLightbox(null)}
+        />
       )}
     </>
   );

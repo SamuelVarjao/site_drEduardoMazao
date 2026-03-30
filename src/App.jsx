@@ -12,6 +12,7 @@ import Procedures from "./pages/Procedures";
 import Results from "./pages/Results";
 import Contents from "./pages/Contents";
 import Contact from "./pages/Contact";
+import LogoCriacao from "./pages/LogoCriacao";
 
 const colors = {
   offwhite: "#fdfbf5",
@@ -80,7 +81,7 @@ const content = {
       title: "Imersão no AdventHealth Nicholson Center",
       description:
         "Treinamento em um instituto especializado nos EUA em técnicas avançadas de rejucenescimento facial.",
-      image: "perfil4.JPG",
+      image: "perfil4.webp",
     },
   ],
     procedures: {
@@ -89,48 +90,76 @@ const content = {
           name: "Blefaroplastia",
           description:
             "Cirurgia das pálpebras para correção de excesso de pele, flacidez ou bolsas sob os olhos.",
-            image: "bleferoplastia.png",
+          image: "bleferoplastia.webp",
+          gallery: [
+            "ptose_bleferoplastia_a_d.webp",
+            "correcao_ectoprio_antes_depois.webp",
+            "ptose_palpebral_a_d.webp",
+            "ptose_palpebral_antes_depois.webp",
+            "ptose_bilateral_antes_depois.webp",
+            "ptose_suspensaofrontal_a_d.webp",
+          ],
         },
         {
           name: "Lifting Facial",
           description:
             "Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.",
-            image: "facelifiting.png",
+          image: "facelifiting.webp",
+          gallery: [],
         },
         {
           name: "Lipo de Papada",
           description:
             "Remoção de gordura localizada no queixo e pescoço para melhorar contorno.",
-            image: "",
+          image: "",
+          gallery: [],
         },
         {
           name: "Rinoplastia",
           description:
             "Remodelagem da estrutura óssea e cartilaginosa do nariz para melhorar a estética.",
-            image: "rinoplastia.png",
+          image: "rinoplastia.webp",
+          gallery: [],
         },
         {
           name: "Otoplastia",
           description:
             "Correção de orelhas proeminentes ou assimétricas reposicionando tamanho, formato e posição.",
-            image: "otoplastia.png",
+          image: "otoplastia.webp",
+          gallery: [
+            "otoplastia_a_d.webp",
+            "otoplastia_a_d_2.webp",
+            "otoplastia_a_d_3.webp",
+          ],
         },
       ],
       breast: [
         {
           name: "Mastopexia",
           description: "Elevação das mamas para restaurar posição e formato natural.",
-          image: "mastopexia.png",
+          image: "mastopexia.webp",
+          gallery: [
+            "mastopexia_protese_a_d.webp",
+            "mastopexia_sem_protese_a_d.webp",
+          ],
         },
         {
           name: "Prótese de Silicone",
           description: "Aumento de volume com naturalidade e proporção ao corpo.",
-          image: "protese_mamaria.png",
+          image: "protese_mamaria.webp",
+          gallery: [
+            "inclusao_protese_mama_a_d.webp",
+            "protese_mama_a_d.webp",
+          ],
         },
         {
           name: "Redução Mamária",
           description: "Redução de volume com alívio de desconforto físico e estético.",
-          image: "reducao_mamaria.png",
+          image: "reducao_mamaria.webp",
+          gallery: [
+            "mamoplastia_redutora_a_d.webp",
+            "mamoplastia_redutora_a_d_2.webp",
+          ],
         },
       ],
       body: [
@@ -138,17 +167,25 @@ const content = {
           name: "Lipoaspiração",
           description: "Remoção de gordura localizada em diferentes regiões do corpo.",
           image: "",
+          gallery: [],
         },
         {
           name: "Lipo HD",
           description:
             "Técnica avançada de escultura corporal com maior definição e naturalidade.",
-            image: "",
+          image: "",
+          gallery: [],
         },
         {
           name: "Abdominoplastia",
           description: "Correção de flacidez e excesso de pele na região abdominal.",
-          image: "abdominoplastia.png",
+          image: "abdominoplastia.webp",
+          gallery: [
+            "abdominoplastia_a_d_2.webp",
+            "abdominoplastia_a_d_3.webp",
+            "abdominoplastia_ancora_a_d.webp",
+            "abdominoplastia_convencional_a_d.webp",
+          ],
         },
       ],
       male: [
@@ -156,12 +193,14 @@ const content = {
           name: "Ginecomastia",
           description:
             "Redução do tecido mamário em homens para contorno mais definido.",
-            image: "",
+          image: "",
+          gallery: [],
         },
         {
           name: "Contorno Corporal",
           description: "Escultura e definição do tórax, abdômen e flancos.",
           image: "",
+          gallery: [],
         },
       ],
     },
@@ -224,6 +263,7 @@ export default function App() {
           }
         />
         <Route path="/resultados" element={<Results content={content} colors={colors} />} />
+        <Route path="/identidade-visual" element={<LogoCriacao />} />
         <Route path="/conteudos" element={<Contents colors={colors} />} />
         <Route path="/contato" element={<Contact content={content} colors={colors} />} />
 

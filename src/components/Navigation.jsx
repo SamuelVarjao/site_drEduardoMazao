@@ -11,6 +11,7 @@ export default function Navigation({ colors, content }) {
     { label: "Trajetória", to: "/trajetoria" },
     { label: "Procedimentos", to: "/procedimentos" },
     { label: "Resultados", to: "/resultados" },
+    { label: "Identidade", to: "/identidade-visual" },
     { label: "Conteúdos", to: "/conteudos" },
     { label: "Contato", to: "/contato" },
   ];

@@ -37,14 +37,14 @@ const defaultContent = {
       title: "Cursos e Aprimoramentos",
       description:
         "Lipo HD, rinomodelação, contorno corporal e técnicas modernas.",
-      image: "curso3.jpg",
+      image: "curso3.webp",
     },
     {
       period: "2025",
       title: "Imersão no AdventHealth Nicholson Center",
       description:
         "Treinamento em um instituto especializado nos EUA em técnicas avançadas de rejucenescimento facial.",
-      image: "perfil4.JPG",
+      image: "perfil4.webp",
     },
   ],
 };

@@ -68,13 +68,13 @@ const Home = ({ setSelectedProcedureCategory }) => {
           name: "Blefaroplastia",
           description:
             "Cirurgia das pálpebras para correção de excesso de pele, flacidez ou bolsas sob os olhos.",
-            image: "bleferoplastia.png",
+            image: "bleferoplastia.webp",
         },
         {
           name: "Lifting Facial",
           description:
             "Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.",
-            image: "facelifiting.png",
+            image: "facelifiting.webp",
         },
         {
           name: "Lipo de Papada",
@@ -86,30 +86,30 @@ const Home = ({ setSelectedProcedureCategory }) => {
           name: "Rinoplastia",
           description:
             "Remodelagem da estrutura óssea e cartilaginosa do nariz para melhorar a estética.",
-            image: "rinoplastia.png",
+            image: "rinoplastia.webp",
         },
         {
           name: "Otoplastia",
           description:
             "Correção de orelhas proeminentes ou assimétricas reposicionando tamanho, formato e posição.",
-            image: "otoplastia.png",
+            image: "otoplastia.webp",
         },
       ],
       breast: [
         {
           name: "Mastopexia",
           description: "Elevação das mamas para restaurar posição e formato natural.",
-          image: "mastopexia.png",
+          image: "mastopexia.webp",
         },
         {
           name: "Prótese de Silicone",
           description: "Aumento de volume com naturalidade e proporção ao corpo.",
-          image: "protese_mamaria.png",
+          image: "protese_mamaria.webp",
         },
         {
           name: "Redução Mamária",
           description: "Redução de volume com alívio de desconforto físico e estético.",
-          image: "reducao_mamaria.png",
+          image: "reducao_mamaria.webp",
         },
       ],
       body: [
@@ -127,7 +127,7 @@ const Home = ({ setSelectedProcedureCategory }) => {
         {
           name: "Abdominoplastia",
           description: "Correção de flacidez e excesso de pele na região abdominal.",
-          image: "abdominoplastia.png",
+          image: "abdominoplastia.webp",
         },
       ],
       male: [
@@ -578,13 +578,13 @@ const ResultsHomeSection = () => {
           {[
             {
               title: "Facelift sem cervicoplastia",
-              before: "procedimentoantes1.png",
-              after: "procedimentodepois1.png",
+              before: "procedimentoantes1.webp",
+              after: "procedimentodepois1.webp",
             },
             {
               title: "Blefaroplastia",
-              before: "image11.png",
-              after: "image12.png",
+              before: "image11.webp",
+              after: "image12.webp",
             },
           ].map((item, idx) => (
             <div key={idx} className="bg-white rounded-lg overflow-hidden shadow-sm">
@@ -690,7 +690,7 @@ const ResultsHomeSection = () => {
                         >
 <div>
   <p className="text-white text-lg leading-relaxed italic">
-    {`“${text}${truncated ? "…" : "”"}`}
+    {`\u201C${text}${truncated ? "\u2026" : "\u201D"}`}
     {truncated && (
       <>
         {" "}
@@ -701,7 +701,7 @@ const ResultsHomeSection = () => {
         >
           mais...
         </Link>
-        <span className="text-white">”</span>
+        <span className="text-white">{"\u201D"}</span>
       </>
     )}
   </p>
@@ -752,6 +752,119 @@ const ResultsHomeSection = () => {
   );
 };
 
+  const LogoHomeSection = () => {
+    const [ref1, isVisible1] = useScrollAnimation();
+    const [ref2, isVisible2] = useScrollAnimation();
+
+    return (
+      <section className="py-20 relative overflow-hidden" style={{ backgroundColor: "#1a2e38" }}>
+        {/* Background watermark */}
+        <div
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{ opacity: 0.04 }}
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}icone_dredu.svg`}
+            alt=""
+            className="w-[500px] h-[500px]"
+            style={{
+              animation: "gentle-logo-spin 40s linear infinite",
+              filter: "brightness(2)",
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Logo with animation */}
+            <div
+              ref={ref1}
+              className="flex items-center justify-center transition-all duration-1000"
+              style={{
+                opacity: isVisible1 ? 1 : 0,
+                transform: isVisible1 ? "scale(1)" : "scale(0.8)",
+              }}
+            >
+              <div className="relative">
+                <div
+                  className="absolute inset-0 rounded-full blur-3xl"
+                  style={{
+                    background: `radial-gradient(circle, ${colors.teal}20 0%, transparent 70%)`,
+                    transform: "scale(2)",
+                  }}
+                />
+                <img
+                  src={`${import.meta.env.BASE_URL}icone_dredu.svg`}
+                  alt="Logo Dr. Eduardo Mazão"
+                  className="relative w-48 h-48 sm:w-56 sm:h-56"
+                  style={{
+                    animation: "gentle-logo-spin 30s linear infinite",
+                    filter: `drop-shadow(0 0 40px ${colors.teal}25)`,
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Text */}
+            <div
+              ref={ref2}
+              className="transition-all duration-1000"
+              style={{
+                opacity: isVisible2 ? 1 : 0,
+                transform: isVisible2 ? "translateX(0)" : "translateX(50px)",
+              }}
+            >
+              <p
+                className="text-xs font-medium tracking-[0.3em] uppercase mb-4"
+                style={{ color: colors.gold }}
+              >
+                Identidade Visual
+              </p>
+              <h2
+                className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+                style={{ color: colors.offwhite }}
+              >
+                Fibonacci, o Náutilo e a{" "}
+                <span style={{ color: colors.gold }}>Proporção Áurea</span>
+              </h2>
+              <p
+                className="text-lg leading-relaxed mb-4"
+                style={{ color: colors.soft }}
+              >
+                A logo do Dr. Eduardo Mazão nasce da união entre a concha do
+                náutilo e a espiral de Fibonacci &mdash; dois símbolos universais
+                de harmonia, crescimento ordenado e beleza natural.
+              </p>
+              <p
+                className="leading-relaxed mb-8"
+                style={{ color: colors.soft, opacity: 0.7 }}
+              >
+                Uma identidade visual que reflete os mesmos valores que guiam
+                cada procedimento: precisão, naturalidade e proporção.
+              </p>
+
+              <Link
+                to="/identidade-visual"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-medium border-2 transition-all hover:gap-3 group"
+                style={{ borderColor: colors.gold, color: colors.gold }}
+              >
+                Conheça a história completa
+                <ChevronRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes gentle-logo-spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+          }
+        `}</style>
+      </section>
+    );
+  };
+
   const FinalCTA = () => {
     const [ref1, isVisible1] = useScrollAnimation();
 
@@ -791,6 +904,7 @@ const ResultsHomeSection = () => {
       <AboutHomeSection />
       <ProceduresHomeSection />
       <ResultsHomeSection />
+      <LogoHomeSection />
       <FinalCTA />
     </>
   );
