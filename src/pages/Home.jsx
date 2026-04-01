@@ -768,7 +768,6 @@ const ResultsHomeSection = () => {
             alt=""
             className="w-[500px] h-[500px]"
             style={{
-              animation: "gentle-logo-spin 40s linear infinite",
               filter: "brightness(2)",
             }}
           />
@@ -798,7 +797,6 @@ const ResultsHomeSection = () => {
                   alt="Logo Dr. Eduardo Mazão"
                   className="relative w-48 h-48 sm:w-56 sm:h-56"
                   style={{
-                    animation: "gentle-logo-spin 30s linear infinite",
                     filter: `drop-shadow(0 0 40px ${colors.teal}25)`,
                   }}
                 />
@@ -855,12 +853,6 @@ const ResultsHomeSection = () => {
           </div>
         </div>
 
-        <style>{`
-          @keyframes gentle-logo-spin {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-          }
-        `}</style>
       </section>
     );
   };

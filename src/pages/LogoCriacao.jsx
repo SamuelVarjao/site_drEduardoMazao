@@ -32,7 +32,7 @@ const storyContent = [
     number: "01",
     title: "Leonardo de Pisa",
     subtitle: "O Matemático que Mudou o Mundo",
-    text: "Leonardo de Pisa, mais conhecido como Fibonacci, foi um matemático italiano do século XIII. Ele teve papel importante na difusão do sistema de numeração indo-arábico \u2014 muito mais prático do que os numerais romanos utilizados até então.",
+    text: "Leonardo de Pisa, mais conhecido como Fibonacci, foi um matemático italiano do século XIII. Ele teve papel importante na difusão do sistema de numeração indo-arábico (0, 1, 2, 3\u2026) \u2014 muito mais prático do que os numerais romanos (I, II, III\u2026) utilizados até então.",
     highlight: "Em sua obra Liber Abaci (1202), apresentou um problema matemático envolvendo a reprodução de coelhos que daria origem a uma das sequências numéricas mais famosas da história.",
   },
   {
@@ -59,9 +59,9 @@ const storyContent = [
   {
     number: "05",
     title: "A União",
-    subtitle: "O Logotipo do Dr. Eduardo Mazão",
-    text: "Este logotipo foi criado a partir da união de dois elementos marcantes: a concha do náutilo e a espiral de Fibonacci. Essa combinação simboliza a relação entre harmonia, precisão e natureza.",
-    highlight: "Natureza e matemática. Harmonia e proporcionalidade. Uma identidade visual que reflete os valores que guiam cada procedimento.",
+    subtitle: "O Logotipo",
+    text: "Essa criação vem da união de dois elementos marcantes: a concha do náutilo e a espiral de Fibonacci. Essa combinação simboliza a relação entre harmonia, precisão e natureza.",
+    highlight: "Natureza e matemática. Harmonia e proporcionalidade. Uma figura que reflete os valores que guiam cada procedimento.",
   },
 ];
 
@@ -70,7 +70,6 @@ export default function LogoCriacao() {
   const [rotation, setRotation] = useState(0);
   const [logoOpacity, setLogoOpacity] = useState(0.15);
 
-  // Scroll-driven rotation
   useEffect(() => {
     const handleScroll = () => {
       if (!storyRef.current) return;
@@ -123,9 +122,6 @@ export default function LogoCriacao() {
               src={`${import.meta.env.BASE_URL}icone_dredu.svg`}
               alt="Logo Dr. Eduardo Mazão"
               className="w-28 h-28 sm:w-36 sm:h-36 mx-auto"
-              style={{
-                animation: "gentle-spin 30s linear infinite",
-              }}
             />
           </div>
 
@@ -133,22 +129,30 @@ export default function LogoCriacao() {
             className="text-sm font-medium tracking-[0.3em] uppercase mb-6"
             style={{ color: colors.gold }}
           >
-            Identidade Visual
+            Como Criei a Logo
           </p>
           <h1
             className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold mb-6"
             style={{ color: colors.offwhite }}
           >
-            A História por Trás
+            Fibonacci, o Náutilo
             <br />
-            <span style={{ color: colors.gold }}>da Logo</span>
+            <span style={{ color: colors.gold }}>e a Proporção Áurea</span>
           </h1>
           <p
             className="text-lg sm:text-xl leading-relaxed max-w-xl mx-auto"
             style={{ color: colors.soft }}
           >
-            Uma identidade visual construída sobre a união entre natureza e
-            matemática, harmonia e proporcionalidade.
+            Essa criação nasce da união entre a concha do náutilo e a espiral de
+            Fibonacci — dois símbolos universais de harmonia, crescimento
+            ordenado e beleza natural.
+          </p>
+          <p
+            className="text-base sm:text-lg leading-relaxed max-w-xl mx-auto mt-4"
+            style={{ color: colors.gold, opacity: 0.8 }}
+          >
+            Essa imagem reflete os mesmos valores que guiam cada procedimento:
+            precisão, naturalidade e proporção.
           </p>
 
           <div className="mt-12 animate-bounce">
@@ -176,7 +180,6 @@ export default function LogoCriacao() {
           {/* Left: sticky logo */}
           <div className="hidden md:flex sticky top-0 h-screen items-center justify-center">
             <div className="relative">
-              {/* Subtle radial glow */}
               <div
                 className="absolute inset-0 rounded-full blur-3xl"
                 style={{
@@ -226,14 +229,6 @@ export default function LogoCriacao() {
 
       {/* ===== FINAL SECTION ===== */}
       <FinalSection />
-
-      {/* CSS Animation */}
-      <style>{`
-        @keyframes gentle-spin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }
@@ -317,6 +312,36 @@ function StoryBlock({ block, idx, isLast }) {
               >
                 ...
               </span>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <div
+                className="rounded-lg p-4 text-center"
+                style={{
+                  backgroundColor: `${colors.teal}12`,
+                  border: `1px solid ${colors.gold}18`,
+                }}
+              >
+                <p className="font-serif text-lg font-bold" style={{ color: colors.gold }}>
+                  Indo-arábico
+                </p>
+                <p className="text-sm mt-1" style={{ color: colors.soft, opacity: 0.7 }}>
+                  0, 1, 2, 3, 4, 5...
+                </p>
+              </div>
+              <div
+                className="rounded-lg p-4 text-center"
+                style={{
+                  backgroundColor: `${colors.teal}12`,
+                  border: `1px solid ${colors.gold}18`,
+                }}
+              >
+                <p className="font-serif text-lg font-bold" style={{ color: colors.gold }}>
+                  Romanos
+                </p>
+                <p className="text-sm mt-1" style={{ color: colors.soft, opacity: 0.7 }}>
+                  I, II, III, IV, V...
+                </p>
+              </div>
             </div>
           </>
         )}
@@ -478,7 +503,6 @@ function FinalSection() {
             alt="Logo Dr. Eduardo Mazão"
             className="w-32 h-32 sm:w-40 sm:h-40 mx-auto"
             style={{
-              animation: "gentle-spin 40s linear infinite",
               filter: `drop-shadow(0 0 30px ${colors.teal}20)`,
             }}
           />
@@ -499,7 +523,7 @@ function FinalSection() {
         >
           Uma identidade visual que traduz a união entre precisão, crescimento
           ordenado e a busca natural pela proporção perfeita &mdash; os mesmos
-          valores que guiam cada procedimento do Dr. Eduardo Mazão.
+          valores que guiam cada procedimento.
         </p>
 
         <Link
