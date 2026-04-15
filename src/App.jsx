@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsapp";
+import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -236,6 +237,7 @@ export default function App() {
         * { scroll-behavior: smooth; }
       `}</style>
 
+      <ScrollToTop />
       <Navigation colors={colors} content={content} />
 
       <Routes>

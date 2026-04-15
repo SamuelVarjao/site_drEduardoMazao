@@ -143,7 +143,7 @@ export default function LogoCriacao() {
             className="text-lg sm:text-xl leading-relaxed max-w-xl mx-auto"
             style={{ color: colors.soft }}
           >
-            Essa criação nasce da união entre a concha do náutilo e a espiral de
+            Criei este logotipo da união entre a concha do náutilo e a espiral de
             Fibonacci — dois símbolos universais de harmonia, crescimento
             ordenado e beleza natural.
           </p>
