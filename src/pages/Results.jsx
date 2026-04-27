@@ -89,10 +89,10 @@ export default function Results({ content, colors }) {
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const clampLines = isDesktop ? 7 : 6;
-  const textHeight = isDesktop ? "10.5rem" : "9.5rem";
-  const cardHeight = isDesktop ? "200px" : "320px";
-  const perPage = isDesktop ? 4 : 2;
+  const clampLines = isDesktop ? 10 : 6;
+  const textHeight = isDesktop ? "16rem" : "9.5rem";
+  const cardHeight = isDesktop ? "380px" : "320px";
+  const perPage = isDesktop ? 3 : 2;
 
   const pages = useMemo(() => {
     const out = [];
@@ -140,7 +140,7 @@ const onTouchEnd = () => {
       { id: 4, before: "image5.webp", after: "image6.webp", title: "Blefaroplastia" },
       { id: 5, before: "procedimentoantes5.webp", after: "procedimentodepois5.webp", title: "Facelift Secundário" },
       { id: 6, before: "image7.webp", after: "image8.webp", title: "Otoplastia" },
-      { id: 7, before: "procedimentoantes7.webp", after: "procedimentodepois7.webp", title: "Facelift Sem Cervicoplástia" },
+      { id: 7, before: "procedimentoantes7.webp", after: "procedimentodepois7.webp", title: "Facelift" },
       { id: 8, before: "image9.webp", after: "image10.webp", title: "Abdominoplastia" },
       { id: 9, before: "otoplastia_antes.webp", after: "otoplastia_depois.webp", title: "Otoplastia" },
       { id: 10, before: "otoplastia_antes2.webp", after: "otoplastia_depois_2.webp", title: "Otoplastia" },
@@ -262,14 +262,14 @@ const onTouchEnd = () => {
                   {pages.map((group, pageIdx) => (
                     <div key={pageIdx} className="min-w-full px-1">
                       <div
-  className={`grid gap-6 items-stretch auto-rows-fr ${isDesktop ? "grid-cols-4" : "grid-cols-2"}`}
+  className={`grid gap-6 items-stretch auto-rows-fr ${isDesktop ? "grid-cols-3" : "grid-cols-2"}`}
 >
 {group.map((test, idx) => (
   <button
     key={`${test.name}-${idx}`}
     type="button"
     onClick={() => setOpenTestimonial(test)}
-    className="bg-white rounded-lg p-6 text-left hover:shadow-lg transition-shadow w-full flex flex-col"
+    className="bg-white rounded-lg p-6 md:p-8 text-left hover:shadow-lg transition-shadow w-full flex flex-col"
     style={{ height: cardHeight }}
   >
     <div className="flex gap-1 mb-4">
@@ -282,7 +282,7 @@ const onTouchEnd = () => {
 
     {/* Área do texto sem cortar: vira "scroll" quando ultrapassar */}
     <div
-      className="text-base leading-relaxed italic pr-2"
+      className="text-base md:text-lg leading-relaxed italic pr-2"
       style={{
         color: mergedColors.darkGray,
         height: textHeight,

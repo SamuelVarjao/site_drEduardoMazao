@@ -51,9 +51,8 @@ const About = ({ content, colors }) => {
           <div className="space-y-6">
             <div
               ref={ref1}
-              className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed transition-all duration-1000"
+              className="w-full aspect-square rounded-lg overflow-hidden transition-all duration-1000"
               style={{
-                borderColor: mergedColors.teal,
                 backgroundColor: mergedColors.soft,
                 opacity: isVisible1 ? 1 : 0,
                 transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
@@ -63,21 +62,20 @@ const About = ({ content, colors }) => {
                 <source srcSet={`${import.meta.env.BASE_URL}palestra2.webp`} type="image/webp" />
                 <img
                   src={`${import.meta.env.BASE_URL}palestra2.webp`}
-                  alt="Foto do Dr. Eduardo Mazão 3"
+                  alt="Foto do Dr. Eduardo Mazão"
                   loading="lazy"
                   decoding="async"
                   width="600"
                   height="600"
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-cover"
                 />
               </picture>
             </div>
 
             <div
               ref={ref2}
-              className="w-full aspect-video rounded-lg flex items-center justify-center border-2 border-dashed transition-all duration-1000"
+              className="w-full aspect-video rounded-lg overflow-hidden transition-all duration-1000"
               style={{
-                borderColor: mergedColors.teal,
                 backgroundColor: mergedColors.soft,
                 opacity: isVisible2 ? 1 : 0,
                 transform: isVisible2 ? "translateY(0)" : "translateY(30px)",
@@ -87,12 +85,12 @@ const About = ({ content, colors }) => {
                 <source srcSet={`${import.meta.env.BASE_URL}aula2.webp`} type="image/webp" />
                 <img
                   src={`${import.meta.env.BASE_URL}aula2.webp`}
-                  alt="Foto do Dr. Eduardo Mazão 3"
+                  alt="Foto do Dr. Eduardo Mazão em aula"
                   loading="lazy"
                   decoding="async"
                   width="600"
                   height="600"
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-cover"
                 />
               </picture>
             </div>
@@ -107,11 +105,18 @@ const About = ({ content, colors }) => {
             }}
           >
             <h1 className="font-serif text-5xl font-bold mb-8" style={{ color: mergedColors.darkGray }}>
-              Sobre o Dr. {content?.doctor?.name?.split(" ")?.[2] || ""}
+              Sobre o Dr. Eduardo
             </h1>
 
             <p className="text-lg leading-relaxed mb-8" style={{ color: mergedColors.darkGray }}>
-              {content?.doctor?.about || ""}
+              Dr. Eduardo Mazão Miranda possui graduação em Medicina pelo Centro
+              Universitário Assis Gurgacz (2010–2015), com posterior certificação
+              americana em medicina pelo Educational Commission for Foreign Medical
+              Graduates (ECFMG) em 2019, residência médica em cirurgia geral pelo
+              Hospital Santa Marcelina (SP) e residência médica em cirurgia plástica
+              pelo Hospital Heliópolis. Possui formação complementar como fellow em
+              cosmiatria pelo Instituto Boggio, além de cirurgia plástica facial
+              (SP e EUA) e rinoplastia (SP).
             </p>
 
             <h2 className="font-serif text-2xl font-bold mb-6" style={{ color: mergedColors.teal }}>
@@ -119,11 +124,11 @@ const About = ({ content, colors }) => {
             </h2>
             <ul className="space-y-4">
               {[
-                "Naturalidade acima de volume",
-                "Anatomia como guia",
                 "Segurança absoluta",
-                "Planejamento individualizado",
                 "Clareza e transparência",
+                "Anatomia como guia",
+                "Planejamento individualizado",
+                "Entrega de resultado",
               ].map((item, idx) => (
                 <li key={idx} className="flex gap-4 items-start">
                   <div
@@ -141,8 +146,7 @@ const About = ({ content, colors }) => {
               </p>
               <ul className="space-y-2 text-sm" style={{ color: mergedColors.darkGray }}>
                 <li>• Português (nativo)</li>
-                <li>• Inglês (avançado)</li>
-                <li>• Espanhol (básico)</li>
+                <li>• Inglês (fluente)</li>
               </ul>
             </div>
           </div>

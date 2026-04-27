@@ -28,6 +28,13 @@ const defaultContent = {
         ],
       },
       {
+        name: "Lifting de Supercílios",
+        description:
+          "Elevação e reposicionamento dos supercílios para um olhar mais aberto e jovem.",
+        image: "blefaroplastia_lifting_supercilios_novo.webp",
+        gallery: ["lifting_temporal_novo.webp"],
+      },
+      {
         name: "Lifting Facial",
         description:
           "Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.",
@@ -35,9 +42,9 @@ const defaultContent = {
         gallery: [],
       },
       {
-        name: "Lipo de Papada",
+        name: "Lifting Cervical",
         description:
-          "Remoção de gordura localizada no queixo e pescoço para melhorar contorno.",
+          "Rejuvenescimento do pescoço com reposicionamento de tecidos, devolvendo contorno e definição à região cervical.",
         image: "",
         gallery: [],
       },
@@ -46,7 +53,7 @@ const defaultContent = {
         description:
           "Remodelagem da estrutura óssea e cartilaginosa do nariz para melhorar a estética.",
         image: "rinoplastia.webp",
-        gallery: [],
+        gallery: ["rinosseptoplastia_novo.webp"],
       },
       {
         name: "Otoplastia",
@@ -58,6 +65,20 @@ const defaultContent = {
           "otoplastia_a_d_2.webp",
           "otoplastia_a_d_3.webp",
         ],
+      },
+      {
+        name: "Preenchedores",
+        description:
+          "Tratamento com ácido hialurônico para harmonização, volume e hidratação facial.",
+        image: "",
+        gallery: [],
+      },
+      {
+        name: "Toxina Botulínica",
+        description:
+          "Suavização de linhas de expressão com aplicação precisa, respeitando a naturalidade dos traços.",
+        image: "",
+        gallery: [],
       },
     ],
     breast: [
@@ -91,43 +112,22 @@ const defaultContent = {
     ],
     body: [
       {
-        name: "Lipoaspiração",
-        description: "Remoção de gordura localizada em diferentes regiões do corpo.",
-        image: "",
-        gallery: [],
-      },
-      {
-        name: "Lipo HD",
+        name: "Abdominoplastia Convencional",
         description:
-          "Técnica avançada de escultura corporal com maior definição e naturalidade.",
-        image: "",
-        gallery: [],
-      },
-      {
-        name: "Abdominoplastia",
-        description: "Correção de flacidez e excesso de pele na região abdominal.",
-        image: "abdominoplastia.webp",
+          "Correção de flacidez e excesso de pele na região abdominal, com cicatriz horizontal.",
+        image: "abdominoplastia_convencional_novo.webp",
         gallery: [
+          "abdominoplastia_convencional_a_d.webp",
           "abdominoplastia_a_d_2.webp",
           "abdominoplastia_a_d_3.webp",
-          "abdominoplastia_ancora_a_d.webp",
-          "abdominoplastia_convencional_a_d.webp",
         ],
       },
-    ],
-    male: [
       {
-        name: "Ginecomastia",
+        name: "Abdominoplastia em Âncora",
         description:
-          "Redução do tecido mamário em homens para contorno mais definido.",
-        image: "",
-        gallery: [],
-      },
-      {
-        name: "Contorno Corporal",
-        description: "Escultura e definição do tórax, abdômen e flancos.",
-        image: "",
-        gallery: [],
+          "Técnica indicada para casos de grande excesso de pele, com cicatriz em formato de âncora para um contorno abdominal harmônico.",
+        image: "abdominoplastia_ancora_novo.webp",
+        gallery: ["abdominoplastia_ancora_a_d.webp"],
       },
     ],
   },
@@ -195,7 +195,6 @@ const Procedures = ({
               { key: "face", label: "Rosto" },
               { key: "breast", label: "Mamas" },
               { key: "body", label: "Corpo" },
-              { key: "male", label: "Masculino" },
             ].map((cat) => (
               <button
                 key={cat.key}

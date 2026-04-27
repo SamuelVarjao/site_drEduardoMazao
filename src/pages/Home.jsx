@@ -4,7 +4,6 @@ import {
   Instagram,
   MessageCircle,
   ChevronRight,
-  Heart,
   Award,
   Shield,
   Clock,
@@ -26,21 +25,16 @@ const Home = ({ setSelectedProcedureCategory }) => {
     doctor: {
       name: "Dr. Eduardo Mazão",
       title: "Cirurgião Plástico",
-      crm: "CRM: 215.230 | RQE: 147.050",
+      crm: "CRM: 215.230 | RQE: 139.422",
       tagline: "Cirurgia plástica moderna, segura e guiada pela sutileza.",
       about:
-        "Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas de rejuvenescimento facial, mamas e contorno corporal.",
+        "Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas em rejuvenescimento facial e rinoplastia.",
       philosophy: [
-        {
-          icon: Heart,
-          title: "Naturalidade acima de volume",
-          description: "Resultados sutis, elegantes e proporcionais.",
-        },
         {
           icon: Award,
           title: "Formação sólida",
           description:
-            "Anos de prática e especialização em cirurgia geral e cirurgia plástica.",
+            "Residência médica em cirurgia geral e cirurgia plástica, além de pós-graduação em cirurgia plástica facial.",
         },
         {
           icon: Shield,
@@ -68,31 +62,49 @@ const Home = ({ setSelectedProcedureCategory }) => {
           name: "Blefaroplastia",
           description:
             "Cirurgia das pálpebras para correção de excesso de pele, flacidez ou bolsas sob os olhos.",
-            image: "bleferoplastia.webp",
+          image: "bleferoplastia.webp",
+        },
+        {
+          name: "Lifting de Supercílios",
+          description:
+            "Elevação e reposicionamento dos supercílios para um olhar mais aberto e jovem.",
+          image: "blefaroplastia_lifting_supercilios_novo.webp",
         },
         {
           name: "Lifting Facial",
           description:
             "Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.",
-            image: "facelifiting.webp",
+          image: "facelifiting.webp",
         },
         {
-          name: "Lipo de Papada",
+          name: "Lifting Cervical",
           description:
-            "Remoção de gordura localizada no queixo e pescoço para melhorar contorno.",
-            image: "",
+            "Rejuvenescimento do pescoço com reposicionamento de tecidos, devolvendo contorno e definição à região cervical.",
+          image: "",
         },
         {
           name: "Rinoplastia",
           description:
             "Remodelagem da estrutura óssea e cartilaginosa do nariz para melhorar a estética.",
-            image: "rinoplastia.webp",
+          image: "rinoplastia.webp",
         },
         {
           name: "Otoplastia",
           description:
             "Correção de orelhas proeminentes ou assimétricas reposicionando tamanho, formato e posição.",
-            image: "otoplastia.webp",
+          image: "otoplastia.webp",
+        },
+        {
+          name: "Preenchedores",
+          description:
+            "Tratamento com ácido hialurônico para harmonização, volume e hidratação facial.",
+          image: "",
+        },
+        {
+          name: "Toxina Botulínica",
+          description:
+            "Suavização de linhas de expressão com aplicação precisa, respeitando a naturalidade dos traços.",
+          image: "",
         },
       ],
       breast: [
@@ -114,33 +126,16 @@ const Home = ({ setSelectedProcedureCategory }) => {
       ],
       body: [
         {
-          name: "Lipoaspiração",
-          description: "Remoção de gordura localizada em diferentes regiões do corpo.",
-          image: "",
-        },
-        {
-          name: "Lipo HD",
+          name: "Abdominoplastia Convencional",
           description:
-            "Técnica avançada de escultura corporal com maior definição e naturalidade.",
-            image: "",
+            "Correção de flacidez e excesso de pele na região abdominal, com cicatriz horizontal.",
+          image: "abdominoplastia_convencional_novo.webp",
         },
         {
-          name: "Abdominoplastia",
-          description: "Correção de flacidez e excesso de pele na região abdominal.",
-          image: "abdominoplastia.webp",
-        },
-      ],
-      male: [
-        {
-          name: "Ginecomastia",
+          name: "Abdominoplastia em Âncora",
           description:
-            "Redução do tecido mamário em homens para contorno mais definido.",
-            image: "",
-        },
-        {
-          name: "Contorno Corporal",
-          description: "Escultura e definição do tórax, abdômen e flancos.",
-          image: "",
+            "Técnica indicada para casos de grande excesso de pele, com cicatriz em formato de âncora para um contorno abdominal harmônico.",
+          image: "abdominoplastia_ancora_novo.webp",
         },
       ],
     },
@@ -234,16 +229,16 @@ const Home = ({ setSelectedProcedureCategory }) => {
               }}
             >
               <div
-                className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed"
-                style={{ borderColor: colors.teal, backgroundColor: colors.soft }}
+                className="w-full aspect-square rounded-lg overflow-hidden flex items-center justify-center"
+                style={{ backgroundColor: colors.soft }}
               >
                 <picture>
                   <source
-                    srcSet={`${import.meta.env.BASE_URL}perfil3_cortado.webp`}
+                    srcSet={`${import.meta.env.BASE_URL}foto_home_novo.webp`}
                     type="image/webp"
                   />
                   <img
-                    src={`${import.meta.env.BASE_URL}perfil3_cortado.webp`}
+                    src={`${import.meta.env.BASE_URL}foto_home_novo.webp`}
                     alt="Foto do Dr. Eduardo Mazão"
                     loading="eager"
                     fetchPriority="high"
@@ -341,7 +336,7 @@ const Home = ({ setSelectedProcedureCategory }) => {
 
           <div
             ref={ref1}
-            className="grid md:grid-cols-4 gap-8 transition-all duration-1000"
+            className="grid md:grid-cols-3 gap-8 transition-all duration-1000"
             style={{
               opacity: isVisible1 ? 1 : 0,
               transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
@@ -398,11 +393,11 @@ const Home = ({ setSelectedProcedureCategory }) => {
 
               <button
                 type="button"
-                onClick={() => navigate("/trajetoria")}
+                onClick={() => navigate("/sobre")}
                 className="inline-flex items-center gap-2 font-medium transition-all hover:gap-3 group px-6 py-3 rounded-full border-2"
                 style={{ color: colors.teal, borderColor: colors.teal }}
               >
-                Conheça a trajetória completa
+                Saiba mais sobre o Dr. Eduardo
                 <ChevronRight size={20} />
               </button>
             </div>
@@ -416,8 +411,8 @@ const Home = ({ setSelectedProcedureCategory }) => {
               }}
             >
               <div
-                className="w-full aspect-square rounded-lg flex items-center justify-center border-2 border-dashed"
-                style={{ borderColor: colors.teal, backgroundColor: colors.soft }}
+                className="w-full aspect-square rounded-lg overflow-hidden flex items-center justify-center"
+                style={{ backgroundColor: colors.soft }}
               >
                 <picture>
                   <source
@@ -455,7 +450,7 @@ const Home = ({ setSelectedProcedureCategory }) => {
 
           <div
             ref={ref1}
-            className="grid md:grid-cols-4 gap-6 transition-all duration-1000"
+            className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto transition-all duration-1000"
             style={{
               opacity: isVisible1 ? 1 : 0,
               transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
@@ -467,17 +462,15 @@ const Home = ({ setSelectedProcedureCategory }) => {
                 className="bg-white rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <div
-                  className="h-48 flex items-center justify-center border-b-4"
+                  className="h-32 flex items-center justify-center border-b-2"
                   style={{ borderColor: colors.teal, backgroundColor: colors.soft }}
                 >
                   <div className="text-center">
                     <p
-                      className="font-serif text-2xl font-bold capitalize mb-2"
+                      className="font-serif text-xl font-bold capitalize"
                       style={{ color: colors.teal }}
                     >
-                      {category === "male"
-                        ? "Masculino"
-                        : category === "breast"
+                      {category === "breast"
                         ? "Mamas"
                         : category === "body"
                         ? "Corpo"
@@ -486,11 +479,11 @@ const Home = ({ setSelectedProcedureCategory }) => {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-5">
                   {procedures.map((proc, idx) => (
                     <p
                       key={idx}
-                      className="text-sm leading-relaxed mb-4 last:mb-0"
+                      className="text-sm leading-relaxed mb-2 last:mb-0"
                       style={{ color: colors.darkGray }}
                     >
                       • {proc.name}
@@ -577,14 +570,14 @@ const ResultsHomeSection = () => {
         >
           {[
             {
-              title: "Facelift sem cervicoplastia",
-              before: "procedimentoantes1.webp",
-              after: "procedimentodepois1.webp",
+              title: "Facelift",
+              before: "facelifting_home_antes.webp",
+              after: "facelifting_home_depois.webp",
             },
             {
-              title: "Blefaroplastia",
-              before: "image11.webp",
-              after: "image12.webp",
+              title: "Blefaroplastia com Lifting de Supercílios",
+              before: "blefaroplastia_lifting_supercilios_novo_antes.webp",
+              after: "blefaroplastia_lifting_supercilios_novo_depois.webp",
             },
           ].map((item, idx) => (
             <div key={idx} className="bg-white rounded-lg overflow-hidden shadow-sm">

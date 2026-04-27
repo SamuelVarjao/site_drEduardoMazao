@@ -8,7 +8,6 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Timeline from "./pages/Timeline";
 import Procedures from "./pages/Procedures";
 import Results from "./pages/Results";
 import Contents from "./pages/Contents";
@@ -31,13 +30,22 @@ const content = {
     crm: "CRM: 215.230 | RQE: 139.422",
     tagline: "Cirurgia plástica moderna, segura e guiada pela sutileza.",
     about:
-      "Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas de rejuvenescimento facial, mamas e contorno corporal.",
+      "Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas em rejuvenescimento facial e rinoplastia.",
 
     philosophy: [
-      { title: "Naturalidade acima de volume", description: "Resultados sutis, elegantes e proporcionais." },
-      { title: "Formação sólida", description: "Anos de prática e especialização em cirurgia geral e cirurgia plástica." },
-      { title: "Segurança em primeiro lugar", description: "Indicação criteriosa, orientação clara e transparência total." },
-      { title: "Acompanhamento cuidadoso", description: "Do pré ao pós-operatório." },
+      {
+        title: "Formação sólida",
+        description:
+          "Residência médica em cirurgia geral e cirurgia plástica, além de pós-graduação em cirurgia plástica facial.",
+      },
+      {
+        title: "Segurança em primeiro lugar",
+        description: "Indicação criteriosa, orientação clara e transparência total.",
+      },
+      {
+        title: "Acompanhamento cuidadoso",
+        description: "Do pré ao pós-operatório.",
+      },
     ],
   },
   contact: {
@@ -48,44 +56,7 @@ const content = {
     mapEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3656.3098193738065!2d-46.68617597559967!3d-23.593219199437662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce577758f05d13%3A0x835701f0798e4f00!2sEduardo%20Maz%C3%A3o%20Miranda%20-%20Cirurgi%C3%A3o%20Pl%C3%A1stico%20-%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1771418150442!5m2!1spt-BR!2sbr",
   },
-  timeline: [
-    {
-      period: "2013–2019",
-      title: "Graduação em Medicina",
-      description:
-        "Atuação em hospital, pronto-socorro e centro cirúrgico com formação clínica sólida.",
-      image: "aula1.webp",
-    },
-    {
-      period: "2019–2022",
-      title: "Residência de Cirurgia Geral",
-      description:
-        "Treinamento técnico intenso em procedimentos cirúrgicos essenciais e refinamento de habilidades.",
-      image: "cirurgia1_cortado.webp",
-    },
-    {
-      period: "2022–2025",
-      title: "Residência em Cirurgia Plástica",
-      description:
-        "Especialização avançada em cirurgia estética e reparadora com foco em naturalidade.",
-      image: "procedimento2.webp",
-    },
-    {
-      period: "2023–2025",
-      title: "Cursos e Aprimoramentos",
-      description:
-        "Lipo HD, rinomodelação, rejuvenescimento facial, contorno corporal e técnicas modernas.",
-      image: "curso3.webp",
-    },
-    {
-      period: "2025",
-      title: "Imersão no AdventHealth Nicholson Center",
-      description:
-        "Treinamento em um instituto especializado nos EUA em técnicas avançadas de rejucenescimento facial.",
-      image: "perfil4.webp",
-    },
-  ],
-    procedures: {
+  procedures: {
       face: [
         {
           name: "Blefaroplastia",
@@ -102,6 +73,13 @@ const content = {
           ],
         },
         {
+          name: "Lifting de Supercílios",
+          description:
+            "Elevação e reposicionamento dos supercílios para um olhar mais aberto e jovem.",
+          image: "blefaroplastia_lifting_supercilios_novo.webp",
+          gallery: ["lifting_temporal_novo.webp"],
+        },
+        {
           name: "Lifting Facial",
           description:
             "Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.",
@@ -109,9 +87,9 @@ const content = {
           gallery: [],
         },
         {
-          name: "Lipo de Papada",
+          name: "Lifting Cervical",
           description:
-            "Remoção de gordura localizada no queixo e pescoço para melhorar contorno.",
+            "Rejuvenescimento do pescoço com reposicionamento de tecidos, devolvendo contorno e definição à região cervical.",
           image: "",
           gallery: [],
         },
@@ -120,7 +98,7 @@ const content = {
           description:
             "Remodelagem da estrutura óssea e cartilaginosa do nariz para melhorar a estética.",
           image: "rinoplastia.webp",
-          gallery: [],
+          gallery: ["rinosseptoplastia_novo.webp"],
         },
         {
           name: "Otoplastia",
@@ -132,6 +110,20 @@ const content = {
             "otoplastia_a_d_2.webp",
             "otoplastia_a_d_3.webp",
           ],
+        },
+        {
+          name: "Preenchedores",
+          description:
+            "Tratamento com ácido hialurônico para harmonização, volume e hidratação facial.",
+          image: "",
+          gallery: [],
+        },
+        {
+          name: "Toxina Botulínica",
+          description:
+            "Suavização de linhas de expressão com aplicação precisa, respeitando a naturalidade dos traços.",
+          image: "",
+          gallery: [],
         },
       ],
       breast: [
@@ -165,43 +157,22 @@ const content = {
       ],
       body: [
         {
-          name: "Lipoaspiração",
-          description: "Remoção de gordura localizada em diferentes regiões do corpo.",
-          image: "",
-          gallery: [],
-        },
-        {
-          name: "Lipo HD",
+          name: "Abdominoplastia Convencional",
           description:
-            "Técnica avançada de escultura corporal com maior definição e naturalidade.",
-          image: "",
-          gallery: [],
-        },
-        {
-          name: "Abdominoplastia",
-          description: "Correção de flacidez e excesso de pele na região abdominal.",
-          image: "abdominoplastia.webp",
+            "Correção de flacidez e excesso de pele na região abdominal, com cicatriz horizontal.",
+          image: "abdominoplastia_convencional_novo.webp",
           gallery: [
+            "abdominoplastia_convencional_a_d.webp",
             "abdominoplastia_a_d_2.webp",
             "abdominoplastia_a_d_3.webp",
-            "abdominoplastia_ancora_a_d.webp",
-            "abdominoplastia_convencional_a_d.webp",
           ],
         },
-      ],
-      male: [
         {
-          name: "Ginecomastia",
+          name: "Abdominoplastia em Âncora",
           description:
-            "Redução do tecido mamário em homens para contorno mais definido.",
-          image: "",
-          gallery: [],
-        },
-        {
-          name: "Contorno Corporal",
-          description: "Escultura e definição do tórax, abdômen e flancos.",
-          image: "",
-          gallery: [],
+            "Técnica indicada para casos de grande excesso de pele, com cicatriz em formato de âncora para um contorno abdominal harmônico.",
+          image: "abdominoplastia_ancora_novo.webp",
+          gallery: ["abdominoplastia_ancora_a_d.webp"],
         },
       ],
     },
@@ -252,7 +223,6 @@ export default function App() {
           }
         />
         <Route path="/sobre" element={<About content={content} colors={colors} />} />
-        <Route path="/trajetoria" element={<Timeline content={content} colors={colors} />} />
         <Route
           path="/procedimentos"
           element={

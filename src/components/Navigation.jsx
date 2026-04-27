@@ -8,7 +8,6 @@ export default function Navigation({ colors, content }) {
   const navItems = [
     { label: "Home", to: "/" },
     { label: "Sobre", to: "/sobre" },
-    { label: "Trajetória", to: "/trajetoria" },
     { label: "Procedimentos", to: "/procedimentos" },
     { label: "Resultados", to: "/resultados" },
     { label: "Identidade", to: "/identidade-visual" },
