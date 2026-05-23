@@ -58,85 +58,24 @@ const Home = ({ setSelectedProcedureCategory }) => {
     },
     procedures: {
       face: [
-        {
-          name: "Blefaroplastia",
-          description:
-            "Cirurgia das pálpebras para correção de excesso de pele, flacidez ou bolsas sob os olhos.",
-          image: "bleferoplastia.webp",
-        },
-        {
-          name: "Lifting de Supercílios",
-          description:
-            "Elevação e reposicionamento dos supercílios para um olhar mais aberto e jovem.",
-          image: "blefaroplastia_lifting_supercilios_novo.webp",
-        },
-        {
-          name: "Lifting Facial",
-          description:
-            "Rejuvenescimento facial com elevação de tecidos, restaurando volume e definição.",
-          image: "facelifiting.webp",
-        },
-        {
-          name: "Lifting Cervical",
-          description:
-            "Rejuvenescimento do pescoço com reposicionamento de tecidos, devolvendo contorno e definição à região cervical.",
-          image: "",
-        },
-        {
-          name: "Rinoplastia",
-          description:
-            "Remodelagem da estrutura óssea e cartilaginosa do nariz para melhorar a estética.",
-          image: "rinoplastia.webp",
-        },
-        {
-          name: "Otoplastia",
-          description:
-            "Correção de orelhas proeminentes ou assimétricas reposicionando tamanho, formato e posição.",
-          image: "otoplastia.webp",
-        },
-        {
-          name: "Preenchedores",
-          description:
-            "Tratamento com ácido hialurônico para harmonização, volume e hidratação facial.",
-          image: "",
-        },
-        {
-          name: "Toxina Botulínica",
-          description:
-            "Suavização de linhas de expressão com aplicação precisa, respeitando a naturalidade dos traços.",
-          image: "",
-        },
+        { name: "Blefaroplastia" },
+        { name: "Blefaroplastia Superior" },
+        { name: "Facelift" },
+        { name: "Lifting Temporal e Blefaroplastia" },
+        { name: "Otoplastia" },
+        { name: "Ptose Palpebral" },
+        { name: "Rinosseptoplastia" },
       ],
       breast: [
-        {
-          name: "Mastopexia",
-          description: "Elevação das mamas para restaurar posição e formato natural.",
-          image: "mastopexia.webp",
-        },
-        {
-          name: "Prótese de Silicone",
-          description: "Aumento de volume com naturalidade e proporção ao corpo.",
-          image: "protese_mamaria.webp",
-        },
-        {
-          name: "Redução Mamária",
-          description: "Redução de volume com alívio de desconforto físico e estético.",
-          image: "reducao_mamaria.webp",
-        },
+        { name: "Inclusão de Próteses" },
+        { name: "Mamoplastia Redutora" },
+        { name: "Mastopexia com Prótese" },
+        { name: "Mastopexia sem Prótese" },
+        { name: "Troca de Próteses" },
       ],
       body: [
-        {
-          name: "Abdominoplastia Convencional",
-          description:
-            "Correção de flacidez e excesso de pele na região abdominal, com cicatriz horizontal.",
-          image: "abdominoplastia_convencional_novo.webp",
-        },
-        {
-          name: "Abdominoplastia em Âncora",
-          description:
-            "Técnica indicada para casos de grande excesso de pele, com cicatriz em formato de âncora para um contorno abdominal harmônico.",
-          image: "abdominoplastia_ancora_novo.webp",
-        },
+        { name: "Abdominoplastia Convencional" },
+        { name: "Abdominoplastia em Âncora" },
       ],
     },
     testimonials: [

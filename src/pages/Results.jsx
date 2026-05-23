@@ -55,6 +55,110 @@ const defaultContent = {
   ],
 };
 
+/**
+ * Galeria de antes e depois, separada por procedimento.
+ * Cada grupo possui um ou mais pares (antes/depois).
+ */
+const resultsGallery = [
+  {
+    title: "Blefaroplastia",
+    pairs: [
+      { before: "results/blefaroplastia_antes1.webp", after: "results/blefaroplastia_depois1.webp" },
+    ],
+  },
+  {
+    title: "Blefaroplastia Superior",
+    pairs: [
+      { before: "results/blefaroplastia_superior_antes1.webp", after: "results/blefaroplastia_superior_depois1.webp" },
+      { before: "results/blefaroplastia_superior_antes2.webp", after: "results/blefaroplastia_superior_depois2.webp" },
+      { before: "results/blefaroplastia_superior_antes3.webp", after: "results/blefaroplastia_superior_depois3.webp" },
+    ],
+  },
+  {
+    title: "Blefaroplastia Superior e Inferior",
+    pairs: [
+      { before: "results/blefaroplastia_superior_inferior_a.webp", after: "results/blefaroplastia_superior_inferior_d.webp" },
+    ],
+  },
+  {
+    title: "Correção de Ectrópio",
+    pairs: [
+      { before: "results/correcao_ectoprio_antes.webp", after: "results/correcao_ectoprio_depois.webp" },
+    ],
+  },
+  {
+    title: "Facelift",
+    pairs: [
+      { before: "results/facelift_antes1.webp", after: "results/facelift_depois1.webp" },
+      { before: "results/facelift_antes2.webp", after: "results/facelift_depois2.webp" },
+    ],
+  },
+  {
+    title: "Facelift Secundário",
+    pairs: [
+      { before: "results/facelift_secundario_antes.webp", after: "results/facelift_secundario_depois.webp" },
+      { before: "results/facelift_secundario_antes2.webp", after: "results/facelift_secundario_depois2.webp" },
+    ],
+  },
+  {
+    title: "Lifting Temporal e Blefaroplastia",
+    pairs: [
+      { before: "results/lifting_temporal_blefaroplastia_a.webp", after: "results/lifting_temporal_blefaroplastia_d.webp" },
+      { before: "results/lifting_temporal_blefaroplastia_antes2.webp", after: "results/lifting_temporal_blefaroplastia_depois2.webp" },
+    ],
+  },
+  {
+    title: "Otoplastia",
+    pairs: [
+      { before: "results/otoplastia_antes.webp", after: "results/otoplastia_depois.webp" },
+      { before: "results/otoplastia_antes2.webp", after: "results/otoplastia_depois2.webp" },
+      { before: "results/otoplastia_antes3.webp", after: "results/otoplastia_depois3.webp" },
+    ],
+  },
+  {
+    title: "Ptose Palpebral",
+    pairs: [
+      { before: "results/ptose_palpebral_antes.webp", after: "results/ptose_palpebral_depois.webp" },
+      { before: "results/ptose_palpebral_antes2.webp", after: "results/ptose_palpebral_depois2.webp" },
+    ],
+  },
+  {
+    title: "Ptose Palpebral Bilateral",
+    pairs: [
+      { before: "results/ptose_palpebral_bilateral_antes.webp", after: "results/ptose_palpebral_bilateral_depois.webp" },
+    ],
+  },
+  {
+    title: "Ptose Palpebral e Blefaroplastia Superior",
+    pairs: [
+      { before: "results/ptose_palpebral_blefaroplastia_superior_antes.webp", after: "results/ptose_palpebral_blefaroplastia_superior_depois.webp" },
+    ],
+  },
+  {
+    title: "Rinosseptoplastia",
+    pairs: [
+      { before: "results/rinosseptoplastia_antes.webp", after: "results/rinosseptoplastia_depois.webp" },
+      { before: "results/rinosseptoplastia_antes1.webp", after: "results/rinosseptoplastia_depois1.webp" },
+    ],
+  },
+  {
+    title: "Abdominoplastia Convencional",
+    pairs: [
+      { before: "results/abdominoplastia_convencional_antes.webp", after: "results/abdominoplastia_convencional_depois.webp" },
+      { before: "results/abdominoplastia_convencional_antes2.webp", after: "results/abdominoplastia_convencional_depois2.webp" },
+      { before: "results/abdominoplastia_convencional_antes3.webp", after: "results/abdominoplastia_convencional_depois3.webp" },
+      { before: "results/abdominoplastia_convencional_antes4.webp", after: "results/abdominoplastia_convencional_depois4.webp" },
+    ],
+  },
+  {
+    title: "Abdominoplastia em Âncora",
+    pairs: [
+      { before: "results/abdominoplastia_ancora_antes.webp", after: "results/abdominoplastia_ancora_depois.webp" },
+      { before: "results/abdominoplastia_ancora_antes2.webp", after: "results/abdominoplastia_ancora_depois2.webp" },
+    ],
+  },
+];
+
 function useScrollAnimation() {
   const elementRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -89,7 +193,6 @@ export default function Results({ content, colors }) {
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const clampLines = isDesktop ? 10 : 6;
   const textHeight = isDesktop ? "16rem" : "9.5rem";
   const cardHeight = isDesktop ? "380px" : "320px";
   const perPage = isDesktop ? 3 : 2;
@@ -105,26 +208,26 @@ export default function Results({ content, colors }) {
   const totalPages = pages.length;
   const [page, setPage] = useState(0);
   const goPrev = () => setPage((p) => (p - 1 + totalPages) % totalPages);
-const goNext = () => setPage((p) => (p + 1) % totalPages);
+  const goNext = () => setPage((p) => (p + 1) % totalPages);
 
-const touchStartX = useRef(0);
-const touchDeltaX = useRef(0);
+  const touchStartX = useRef(0);
+  const touchDeltaX = useRef(0);
 
-const onTouchStart = (e) => {
-  touchStartX.current = e.touches[0].clientX;
-  touchDeltaX.current = 0;
-};
+  const onTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+  };
 
-const onTouchMove = (e) => {
-  touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
-};
+  const onTouchMove = (e) => {
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+  };
 
-const onTouchEnd = () => {
-  const threshold = 50; 
-  if (touchDeltaX.current > threshold) goPrev();
-  else if (touchDeltaX.current < -threshold) goNext();
-  touchDeltaX.current = 0;
-};
+  const onTouchEnd = () => {
+    const threshold = 50;
+    if (touchDeltaX.current > threshold) goPrev();
+    else if (touchDeltaX.current < -threshold) goNext();
+    touchDeltaX.current = 0;
+  };
 
   const [openTestimonial, setOpenTestimonial] = useState(null);
   const [lightbox, setLightbox] = useState(null);
@@ -134,17 +237,9 @@ const onTouchEnd = () => {
     setLightbox({ images: fullUrls, startIndex });
   }, []);
 
-  const resultsGallery = useMemo(
-    () => [
-      { id: 3, before: "image3.webp", after: "image4.webp", title: "Rinoplastia" },
-      { id: 4, before: "image5.webp", after: "image6.webp", title: "Blefaroplastia" },
-      { id: 5, before: "procedimentoantes5.webp", after: "procedimentodepois5.webp", title: "Facelift Secundário" },
-      { id: 7, before: "procedimentoantes7.webp", after: "procedimentodepois7.webp", title: "Facelift" },
-      { id: 8, before: "image9.webp", after: "image10.webp", title: "Abdominoplastia" },
-      { id: 10, before: "otoplastia_antes2.webp", after: "otoplastia_depois_2.webp", title: "Otoplastia" },
-    ],
-    [],
-  );
+  useEffect(() => {
+    setPage((p) => Math.min(p, totalPages - 1));
+  }, [totalPages]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -158,80 +253,95 @@ const onTouchEnd = () => {
     <>
       <section className="min-h-[100svh] py-20" style={{ backgroundColor: mergedColors.darkGray }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-5xl font-bold text-center mb-16 text-white">
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-center mb-16 text-white">
             Resultados e Depoimentos
           </h1>
 
-          <h2 className="font-serif text-3xl font-bold text-white mb-10">Galeria de Resultados</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-10">
+            Galeria de Resultados
+          </h2>
 
           <div
             ref={ref1}
-            className="grid md:grid-cols-3 gap-8 mb-20 transition-all duration-1000"
+            className="transition-all duration-1000 mb-20"
             style={{
               opacity: isVisible1 ? 1 : 0,
               transform: isVisible1 ? "translateY(0)" : "translateY(30px)",
             }}
           >
-            {resultsGallery.map((item) => (
-              <div key={item.id} className="bg-white/5 rounded-lg p-4">
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => openImage([item.before, item.after], 0)}
-                      className="aspect-square rounded-lg overflow-hidden border-2 w-full cursor-zoom-in"
-                      style={{
-                        borderColor: mergedColors.teal,
-                        backgroundColor: mergedColors.tealDeep,
-                      }}
-                    >
-                      <img
-                        src={`${import.meta.env.BASE_URL}${item.before}`}
-                        alt={`Antes - ${item.title}`}
-                        loading="lazy"
-                        decoding="async"
-                        width="600"
-                        height="600"
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                    <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
-                      Antes
-                    </p>
-                  </div>
+            {resultsGallery.map((group) => {
+              const groupImages = group.pairs.flatMap((p) => [p.before, p.after]);
 
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => openImage([item.before, item.after], 1)}
-                      className="aspect-square rounded-lg overflow-hidden border-2 w-full cursor-zoom-in"
-                      style={{
-                        borderColor: mergedColors.teal,
-                        backgroundColor: mergedColors.tealDeep,
-                      }}
-                    >
-                      <img
-                        src={`${import.meta.env.BASE_URL}${item.after}`}
-                        alt={`Depois - ${item.title}`}
-                        loading="lazy"
-                        decoding="async"
-                        width="600"
-                        height="600"
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                    <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
-                      Depois
-                    </p>
+              return (
+                <div key={group.title} className="mb-14 last:mb-0">
+                  <h3
+                    className="font-serif text-xl sm:text-2xl font-bold mb-5 pb-2 border-b"
+                    style={{ color: "white", borderColor: mergedColors.teal }}
+                  >
+                    {group.title}
+                  </h3>
+
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {group.pairs.map((pair, idx) => (
+                      <div key={idx} className="bg-white/5 rounded-lg p-4">
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <button
+                              type="button"
+                              onClick={() => openImage(groupImages, idx * 2)}
+                              className="aspect-square rounded-lg overflow-hidden border-2 w-full cursor-zoom-in block"
+                              style={{
+                                borderColor: mergedColors.teal,
+                                backgroundColor: mergedColors.tealDeep,
+                              }}
+                            >
+                              <img
+                                src={`${import.meta.env.BASE_URL}${pair.before}`}
+                                alt={`Antes - ${group.title}`}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-cover"
+                              />
+                            </button>
+                            <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
+                              Antes
+                            </p>
+                          </div>
+
+                          <div>
+                            <button
+                              type="button"
+                              onClick={() => openImage(groupImages, idx * 2 + 1)}
+                              className="aspect-square rounded-lg overflow-hidden border-2 w-full cursor-zoom-in block"
+                              style={{
+                                borderColor: mergedColors.teal,
+                                backgroundColor: mergedColors.tealDeep,
+                              }}
+                            >
+                              <img
+                                src={`${import.meta.env.BASE_URL}${pair.after}`}
+                                alt={`Depois - ${group.title}`}
+                                loading="lazy"
+                                decoding="async"
+                                className="w-full h-full object-cover"
+                              />
+                            </button>
+                            <p className="mt-2 text-center text-sm" style={{ color: "#8FA3AD" }}>
+                              Depois
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-
-                <p className="font-serif font-bold text-white">{item.title}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          <h2 className="font-serif text-3xl font-bold text-white mb-10">Depoimentos de Pacientes</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-10">
+            Depoimentos de Pacientes
+          </h2>
 
           <div
             ref={ref2}
@@ -243,11 +353,11 @@ const onTouchEnd = () => {
           >
             <div className="relative md:px-14">
               <div
-  className="overflow-hidden touch-pan-y"
-  onTouchStart={onTouchStart}
-  onTouchMove={onTouchMove}
-  onTouchEnd={onTouchEnd}
->
+                className="overflow-hidden touch-pan-y"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
                 <div
                   className={[
                     "flex",
@@ -260,75 +370,78 @@ const onTouchEnd = () => {
                   {pages.map((group, pageIdx) => (
                     <div key={pageIdx} className="min-w-full px-1">
                       <div
-  className={`grid gap-6 items-stretch auto-rows-fr ${isDesktop ? "grid-cols-3" : "grid-cols-2"}`}
->
-{group.map((test, idx) => (
-  <button
-    key={`${test.name}-${idx}`}
-    type="button"
-    onClick={() => setOpenTestimonial(test)}
-    className="bg-white rounded-lg p-6 md:p-8 text-left hover:shadow-lg transition-shadow w-full flex flex-col"
-    style={{ height: cardHeight }}
-  >
-    <div className="flex gap-1 mb-4">
-      {[...Array(5)].map((_, i) => (
-        <span key={i} style={{ color: mergedColors.teal }}>
-          ★
-        </span>
-      ))}
-    </div>
+                        className={`grid gap-6 items-stretch auto-rows-fr ${
+                          isDesktop ? "grid-cols-3" : "grid-cols-2"
+                        }`}
+                      >
+                        {group.map((test, idx) => (
+                          <button
+                            key={`${test.name}-${idx}`}
+                            type="button"
+                            onClick={() => setOpenTestimonial(test)}
+                            className="bg-white rounded-lg p-6 md:p-8 text-left hover:shadow-lg transition-shadow w-full flex flex-col"
+                            style={{ height: cardHeight }}
+                          >
+                            <div className="flex gap-1 mb-4">
+                              {[...Array(5)].map((_, i) => (
+                                <span key={i} style={{ color: mergedColors.teal }}>
+                                  ★
+                                </span>
+                              ))}
+                            </div>
 
-    {/* Área do texto sem cortar: vira "scroll" quando ultrapassar */}
-    <div
-      className="text-base md:text-lg leading-relaxed italic pr-2"
-      style={{
-        color: mergedColors.darkGray,
-        height: textHeight,
-        overflowY: "auto",
-        WebkitOverflowScrolling: "touch",
-      }}
-      onClick={(e) => {
-        // Se o usuário clicar/rolar no texto, não abre o modal sem querer
-        e.stopPropagation();
-      }}
-    >
-      {"\u201C"}{test.text}{"\u201D"}
-    </div>
+                            <div
+                              className="text-base md:text-lg leading-relaxed italic pr-2"
+                              style={{
+                                color: mergedColors.darkGray,
+                                height: textHeight,
+                                overflowY: "auto",
+                                WebkitOverflowScrolling: "touch",
+                              }}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
+                            >
+                              {"“"}{test.text}{"”"}
+                            </div>
 
-    <p className="font-serif font-bold mt-auto pt-5" style={{ color: mergedColors.teal }}>
-      {test.name}
-    </p>
-  </button>
-))}
+                            <p
+                              className="font-serif font-bold mt-auto pt-5"
+                              style={{ color: mergedColors.teal }}
+                            >
+                              {test.name}
+                            </p>
+                          </button>
+                        ))}
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-{totalPages > 1 && (
-  <>
-    <button
-      type="button"
-      onClick={goPrev}
-      className="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur border border-white/15 transition"
-      aria-label="Depoimento anterior"
-      title="Anterior"
-    >
-      <span className="text-white text-xl leading-none">‹</span>
-    </button>
+              {totalPages > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={goPrev}
+                    className="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur border border-white/15 transition"
+                    aria-label="Depoimento anterior"
+                    title="Anterior"
+                  >
+                    <span className="text-white text-xl leading-none">‹</span>
+                  </button>
 
-    <button
-      type="button"
-      onClick={goNext}
-      className="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur border border-white/15 transition"
-      aria-label="Próximo depoimento"
-      title="Próximo"
-    >
-      <span className="text-white text-xl leading-none">›</span>
-    </button>
-  </>
-)}
+                  <button
+                    type="button"
+                    onClick={goNext}
+                    className="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur border border-white/15 transition"
+                    aria-label="Próximo depoimento"
+                    title="Próximo"
+                  >
+                    <span className="text-white text-xl leading-none">›</span>
+                  </button>
+                </>
+              )}
             </div>
 
             {testimonials.length === 0 && (
@@ -375,7 +488,7 @@ const onTouchEnd = () => {
             </div>
 
             <p className="mt-6 text-lg leading-relaxed" style={{ color: mergedColors.darkGray }}>
-              {"\u201C"}{openTestimonial.text}{"\u201D"}
+              {"“"}{openTestimonial.text}{"”"}
             </p>
           </div>
         </div>
