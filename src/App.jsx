@@ -27,7 +27,7 @@ const content = {
   doctor: {
     name: "Dr. Eduardo Mazão",
     title: "Cirurgião Plástico",
-    crm: "CRM: 215.230 | RQE: 139.422",
+    crm: "CRM: 215.230 | RQE: 147.050",
     tagline: "Cirurgia plástica moderna, segura e guiada pela sutileza.",
     about:
       "Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas em rejuvenescimento facial e rinoplastia.",
