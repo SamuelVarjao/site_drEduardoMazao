@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { ZoomIn } from "lucide-react";
 import ZoomLightbox from "../components/ZoomLightbox";
 
 function useMediaQuery(query) {
@@ -257,9 +258,17 @@ export default function Results({ content, colors }) {
             Resultados e Depoimentos
           </h1>
 
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-10">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-6">
             Galeria de Resultados
           </h2>
+
+          <p
+            className="flex items-center gap-1.5 mb-8 text-[11px] sm:text-xs italic text-white/55"
+            role="note"
+          >
+            <ZoomIn size={12} className="flex-shrink-0" />
+            <span>Toque ou clique nas imagens para ampliar. No celular, pinça ou duplo toque para zoom.</span>
+          </p>
 
           <div
             ref={ref1}

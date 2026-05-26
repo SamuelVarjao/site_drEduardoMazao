@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { ZoomIn } from "lucide-react";
 import ZoomLightbox from "../components/ZoomLightbox";
 
 const defaultColors = {
@@ -118,6 +119,12 @@ const defaultContent = {
           "procedures/rinosseptoplastia_correcao_cicatriz2.webp",
           "procedures/rinosseptoplastia_correcao_cicatriz3.webp",
         ],
+      },
+      {
+        name: "Câncer de Pele",
+        description:
+          "Tratamento cirúrgico de lesões cutâneas malignas, com remoção da lesão e reconstrução estética da área afetada, preservando função e harmonia da região.",
+        images: [],
       },
     ],
     breast: [
@@ -255,7 +262,7 @@ const Procedures = ({
             Procedimentos
           </h1>
 
-          <div className="flex justify-center gap-3 sm:gap-4 mb-14 sm:mb-16 flex-wrap">
+          <div className="flex justify-center gap-3 sm:gap-4 mb-8 flex-wrap">
             {[
               { key: "face", label: "Rosto" },
               { key: "breast", label: "Mamas" },
@@ -275,6 +282,15 @@ const Procedures = ({
               </button>
             ))}
           </div>
+
+          <p
+            className="flex items-center justify-center gap-1.5 mb-10 sm:mb-12 text-[11px] sm:text-xs italic opacity-70"
+            style={{ color: mergedColors.tealDeep }}
+            role="note"
+          >
+            <ZoomIn size={12} className="flex-shrink-0" />
+            <span>Toque ou clique nas imagens para ampliar. No celular, pinça ou duplo toque para zoom.</span>
+          </p>
 
           <div
             ref={ref1}
@@ -297,7 +313,7 @@ const Procedures = ({
                   className="bg-white rounded-lg overflow-hidden border-t-4 flex flex-col"
                   style={{ borderColor: mergedColors.teal }}
                 >
-                  {cover ? (
+                  {cover && (
                     <button
                       type="button"
                       onClick={() => openLightbox(images, 0)}
@@ -312,18 +328,6 @@ const Procedures = ({
                         className="w-full h-full object-cover"
                       />
                     </button>
-                  ) : (
-                    <div
-                      className="h-48 flex items-center justify-center"
-                      style={{ backgroundColor: mergedColors.soft }}
-                    >
-                      <p
-                        className="font-serif text-xl font-bold px-6 text-center"
-                        style={{ color: mergedColors.teal }}
-                      >
-                        {proc.name}
-                      </p>
-                    </div>
                   )}
 
                   <div className="p-6 sm:p-8 flex flex-col flex-1">

@@ -25,7 +25,7 @@ const Home = ({ setSelectedProcedureCategory }) => {
     doctor: {
       name: "Dr. Eduardo Mazão",
       title: "Cirurgião Plástico",
-      crm: "CRM: 215.230 | RQE: 139.422",
+      crm: "CRM: 215.230 | RQE: 147.050",
       tagline: "Cirurgia plástica moderna, segura e guiada pela sutileza.",
       about:
         "Dr. Eduardo Mazão é Cirurgião Plástico com formação completa em cirurgia geral e cirurgia plástica, além de aprimoramentos em técnicas modernas em rejuvenescimento facial e rinoplastia.",
@@ -59,19 +59,17 @@ const Home = ({ setSelectedProcedureCategory }) => {
     procedures: {
       face: [
         { name: "Blefaroplastia" },
-        { name: "Blefaroplastia Superior" },
         { name: "Facelift" },
-        { name: "Lifting Temporal e Blefaroplastia" },
         { name: "Otoplastia" },
         { name: "Ptose Palpebral" },
         { name: "Rinosseptoplastia" },
+        { name: "Câncer de Pele" },
       ],
       breast: [
         { name: "Inclusão de Próteses" },
         { name: "Mamoplastia Redutora" },
         { name: "Mastopexia com Prótese" },
         { name: "Mastopexia sem Prótese" },
-        { name: "Troca de Próteses" },
       ],
       body: [
         { name: "Abdominoplastia Convencional" },

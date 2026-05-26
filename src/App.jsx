@@ -164,6 +164,12 @@ const content = {
           "procedures/rinosseptoplastia_correcao_cicatriz3.webp",
         ],
       },
+      {
+        name: "Câncer de Pele",
+        description:
+          "Tratamento cirúrgico de lesões cutâneas malignas, com remoção da lesão e reconstrução estética da área afetada, preservando função e harmonia da região.",
+        images: [],
+      },
     ],
     breast: [
       {

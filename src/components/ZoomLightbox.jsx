@@ -109,6 +109,23 @@ export default function ZoomLightbox({ images, startIndex = 0, onClose }) {
     return () => el.removeEventListener("wheel", onWheel);
   }, [onWheel]);
 
+  // Native touch listeners (passive:false so preventDefault works reliably
+  // on iOS/Android — React's synthetic touch handlers are passive by default)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    el.addEventListener("touchstart", onTouchStart, { passive: false });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: false });
+    el.addEventListener("touchcancel", onTouchEnd, { passive: false });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+      el.removeEventListener("touchcancel", onTouchEnd);
+    };
+  }, [onTouchStart, onTouchMove, onTouchEnd]);
+
   // Touch handlers
   const getDistance = (t1, t2) => {
     const dx = t1.clientX - t2.clientX;
@@ -251,9 +268,6 @@ export default function ZoomLightbox({ images, startIndex = 0, onClose }) {
         ref={containerRef}
         className="flex-1 flex items-center justify-center overflow-hidden select-none"
         style={{ cursor: scale > 1 ? "grab" : "default", touchAction: "none" }}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
@@ -305,10 +319,10 @@ export default function ZoomLightbox({ images, startIndex = 0, onClose }) {
       )}
 
       {/* Bottom hint */}
-      <div className="text-center py-2 text-white/40 text-xs">
+      <div className="text-center px-4 py-2 text-white/50 text-xs sm:text-sm">
         {scale <= 1
-          ? "Duplo clique ou pinça para zoom"
-          : "Arraste para mover \u00B7 Duplo clique para resetar"}
+          ? "Duplo toque ou pinça para ampliar · Scroll do mouse no desktop"
+          : "Arraste para mover \u00B7 Duplo toque para voltar"}
       </div>
     </div>
   );
