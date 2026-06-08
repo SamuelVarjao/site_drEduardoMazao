@@ -168,6 +168,13 @@ function useScrollAnimation() {
     const el = elementRef.current;
     if (!el) return;
 
+    // Se o elemento já está (ou quase) na viewport ao montar, revela na hora.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);

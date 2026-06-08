@@ -32,9 +32,11 @@ export default function Navigation({ colors, content }) {
           {/* Logo -> Home */}
           <Link to="/" className="flex items-center space-x-2">
             <img
-              src={`${import.meta.env.BASE_URL}icone_dredu.svg`}
+              src={`${import.meta.env.BASE_URL}icone_dredu_hi.webp`}
               alt="Logo Dr. Eduardo Mazão"
-              className="w-10 h-10"
+              width="112"
+              height="112"
+              className="w-14 h-14 sm:w-12 sm:h-12"
             />
             <div className="hidden sm:block">
               <p className="font-serif text-sm font-bold" style={{ color: colors.teal }}>

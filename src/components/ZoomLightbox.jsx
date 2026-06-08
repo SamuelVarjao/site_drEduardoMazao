@@ -25,6 +25,10 @@ export default function ZoomLightbox({ images, startIndex = 0, onClose }) {
 
   // Double-tap detection
   const lastTap = useRef(0);
+  // Marca o último toque, para ignorar o clique sintético que o navegador
+  // dispara depois de um toque (evita fechar o lightbox no 1º toque de um
+  // duplo-toque e quebrar o zoom no mobile).
+  const lastTouchEnd = useRef(0);
 
   const currentSrc = images[index] || "";
 
@@ -102,29 +106,16 @@ export default function ZoomLightbox({ images, startIndex = 0, onClose }) {
     applyZoom(scale + delta * scale);
   }, [scale, applyZoom]);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [onWheel]);
+  const wheelHandler = useRef(onWheel);
+  wheelHandler.current = onWheel;
 
-  // Native touch listeners (passive:false so preventDefault works reliably
-  // on iOS/Android — React's synthetic touch handlers are passive by default)
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    el.addEventListener("touchstart", onTouchStart, { passive: false });
-    el.addEventListener("touchmove", onTouchMove, { passive: false });
-    el.addEventListener("touchend", onTouchEnd, { passive: false });
-    el.addEventListener("touchcancel", onTouchEnd, { passive: false });
-    return () => {
-      el.removeEventListener("touchstart", onTouchStart);
-      el.removeEventListener("touchmove", onTouchMove);
-      el.removeEventListener("touchend", onTouchEnd);
-      el.removeEventListener("touchcancel", onTouchEnd);
-    };
-  }, [onTouchStart, onTouchMove, onTouchEnd]);
+    const handler = (e) => wheelHandler.current(e);
+    el.addEventListener("wheel", handler, { passive: false });
+    return () => el.removeEventListener("wheel", handler);
+  }, []);
 
   // Touch handlers
   const getDistance = (t1, t2) => {
@@ -188,8 +179,36 @@ export default function ZoomLightbox({ images, startIndex = 0, onClose }) {
 
   const onTouchEnd = useCallback(() => {
     isPanning.current = false;
+    lastTouchEnd.current = Date.now();
     if (scale < 1) resetZoom();
   }, [scale, resetZoom]);
+
+  // "Latest ref" — mantém sempre a versão mais recente dos handlers de toque,
+  // para que os listeners nativos (abaixo) sejam anexados UMA única vez e nunca
+  // precisem ser removidos/readicionados no meio de um gesto de pinça.
+  const touchHandlers = useRef({});
+  touchHandlers.current = { onTouchStart, onTouchMove, onTouchEnd };
+
+  // Listeners de toque nativos com { passive: false } — necessário para que
+  // preventDefault() funcione de fato no iOS/Android (os handlers sintéticos
+  // do React são passivos por padrão e não bloqueiam o zoom do navegador).
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ts = (e) => touchHandlers.current.onTouchStart(e);
+    const tm = (e) => touchHandlers.current.onTouchMove(e);
+    const te = (e) => touchHandlers.current.onTouchEnd(e);
+    el.addEventListener("touchstart", ts, { passive: false });
+    el.addEventListener("touchmove", tm, { passive: false });
+    el.addEventListener("touchend", te, { passive: false });
+    el.addEventListener("touchcancel", te, { passive: false });
+    return () => {
+      el.removeEventListener("touchstart", ts);
+      el.removeEventListener("touchmove", tm);
+      el.removeEventListener("touchend", te);
+      el.removeEventListener("touchcancel", te);
+    };
+  }, []);
 
   // Mouse drag for desktop pan
   const onMouseDown = useCallback((e) => {
@@ -274,7 +293,10 @@ export default function ZoomLightbox({ images, startIndex = 0, onClose }) {
         onMouseLeave={onMouseUp}
         onDoubleClick={onDoubleClick}
         onClick={(e) => {
-          // Close on backdrop click (only when not zoomed and not navigating)
+          // Ignora o clique sintético que segue um toque (mobile): lá o fechar
+          // é feito pelo botão X, e o toque é usado para zoom/duplo-toque.
+          if (Date.now() - lastTouchEnd.current < 600) return;
+          // Fecha ao clicar no fundo (desktop), quando não está com zoom.
           if (scale <= 1 && e.target === containerRef.current) onClose();
         }}
       >
