@@ -213,24 +213,36 @@ function useScrollAnimation() {
     const el = elementRef.current;
     if (!el) return;
 
-    // Se o elemento já está (ou quase) na viewport ao montar, revela na hora.
-    // Evita o caso em que o IntersectionObserver não dispara o callback inicial
-    // e o conteúdo fica preso em opacity:0 até uma interação.
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      setIsVisible(true);
-      return;
-    }
+    let observer;
+    // rAF garante que o layout já foi calculado antes de medir a posição.
+    const raf = requestAnimationFrame(() => {
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
+      if (inView) {
+        // Acima da dobra: anima imediatamente ao entrar na página
+        // (sem depender de scroll, evitando a página em branco).
+        setIsVisible(true);
+        return;
+      }
 
-    observer.observe(el);
-    return () => observer.disconnect();
+      // Abaixo da dobra: anima quando entrar na viewport via scroll.
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(el);
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   return [elementRef, isVisible];
